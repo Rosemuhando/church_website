@@ -1,0 +1,78 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Events | Full Gospel Churches of Kenya - Njiru{% endblock %}
+{% block body_class %}events-page{% endblock %}
+
+{% block content %}
+<section class="events-hero">
+    <div class="events-hero-content">
+        <i aria-hidden="true">✦</i>
+        <p class="events-eyebrow">Worship · Fellowship · Community</p>
+        <h1>Gather with Us</h1>
+        <p>Join us for worship, service, and fellowship throughout the year.</p>
+        <a class="events-hero-link" href="#upcoming-events">Explore Upcoming Events</a>
+    </div>
+</section>
+
+<section class="events-intro">
+    <p class="events-section-label">Life at Njiru</p>
+    <h2>There’s a Place for You Here</h2>
+    <p>Come together for worship, encouragement, and fellowship in our church community.</p>
+</section>
+
+<section class="events-container" id="upcoming-events" aria-label="Upcoming church events">
+    <article class="event-card" id="womens-conference">
+        <div class="event-image">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=85" alt="Women gathered in fellowship" />
+            <span class="event-image-label"><i aria-hidden="true">✦</i> CHURCH GATHERING</span>
+        </div>
+        <div class="event-content">
+            <span class="event-category"><i aria-hidden="true">♡</i> Women’s Ministry</span>
+            <h2>Women’s Conference</h2>
+            <p class="event-description">An encouraging day of prayer, teaching, and community for women.</p>
+            <div class="event-details">
+                <div><i aria-hidden="true">▦</i><strong>Date</strong><span>October 18</span></div>
+                <div><i aria-hidden="true">◷</i><strong>Time</strong><span>10:00 AM</span></div>
+                <div><i aria-hidden="true">⌖</i><strong>Venue</strong><span>Njiru Church</span></div>
+            </div>
+            <a class="event-action" href="{% url 'contact' %}">Ask About This Event <i aria-hidden="true">→</i></a>
+        </div>
+    </article>
+
+    <article class="event-card" id="community-meal">
+        <div class="event-image">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85" alt="A welcoming table prepared for a community meal" />
+            <span class="event-image-label"><i aria-hidden="true">✦</i> COMMUNITY</span>
+        </div>
+        <div class="event-content">
+            <span class="event-category"><i aria-hidden="true">♡</i> Fellowship</span>
+            <h2>Community Meal</h2>
+            <p class="event-description">A time of food, fellowship, and hospitality for church members and neighbors.</p>
+            <div class="event-details">
+                <div><i aria-hidden="true">▦</i><strong>Date</strong><span>November 2</span></div>
+                <div><i aria-hidden="true">◷</i><strong>Time</strong><span>6:00 PM</span></div>
+                <div><i aria-hidden="true">⌖</i><strong>Venue</strong><span>Njiru Church</span></div>
+            </div>
+            <a class="event-action" href="{% url 'contact' %}">Ask About This Event <i aria-hidden="true">→</i></a>
+        </div>
+    </article>
+
+    <article class="event-card" id="christmas-celebration">
+        <div class="event-image">
+            <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1000&q=85" alt="Christmas lights and decorations" />
+            <span class="event-image-label"><i aria-hidden="true">✦</i> SEASONAL CELEBRATION</span>
+        </div>
+        <div class="event-content">
+            <span class="event-category"><i aria-hidden="true">♡</i> Christmas</span>
+            <h2>Christmas Celebration</h2>
+            <p class="event-description">Celebrate the birth of Christ with worship, music, and joyful fellowship.</p>
+            <div class="event-details">
+                <div><i aria-hidden="true">▦</i><strong>Date</strong><span>December 22</span></div>
+                <div><i aria-hidden="true">◷</i><strong>Time</strong><span>6:30 PM</span></div>
+                <div><i aria-hidden="true">⌖</i><strong>Venue</strong><span>Njiru Church</span></div>
+            </div>
+            <a class="event-action" href="{% url 'contact' %}">Ask About This Event <i aria-hidden="true">→</i></a>
+        </div>
+    </article>
+</section>
+{% endblock %}

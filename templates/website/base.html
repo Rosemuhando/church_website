@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Full Gospel Churches of Kenya - Njiru{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <div class="layout">
+        <aside class="sidebar" id="site-sidebar" hidden>
+            <div class="brand-block sidebar-brand">
+                <div class="brand-text">
+                    <div class="brand">Full Gospel Churches of Kenya - Njiru</div>
+                    <div class="tagline">House of Bread for All Nations</div>
+                </div>
+            </div>
+            <div class="sidebar-title">Menu Bar</div>
+            <nav class="side-nav" id="side-nav">
+                <a class="nav-item" href="{% url 'home' %}"><span class="nav-icon">🏠</span>Home</a>
+                <a class="nav-item" href="{% url 'about' %}"><span class="nav-icon">📖</span>About</a>
+                <a class="nav-item" href="{% url 'announcements' %}"><span class="nav-icon">📣</span>Announcements</a>
+                <a class="nav-item" href="{% url 'sermons' %}"><span class="nav-icon">🎧</span>Sermons</a>
+                <a class="nav-item" href="{% url 'events' %}"><span class="nav-icon">📅</span>Events</a>
+                <a class="nav-item" href="{% url 'teachings' %}"><span class="nav-icon">✝️</span>Teachings</a>
+                <a class="nav-item" href="{% url 'gallery' %}"><span class="nav-icon">🖼️</span>Gallery</a>
+                <a class="nav-item" href="{% url 'ministry' %}"><span class="nav-icon">🤝</span>Ministry</a>
+                <a class="nav-item" href="{% url 'tithes_offerings' %}"><span class="nav-icon">💰</span>Tithes &amp; Offerings</a>
+                <a class="nav-item" href="{% url 'contact' %}"><span class="nav-icon">📞</span>Contact</a>
+            </nav>
+            <div id="no-results" class="no-results" hidden>No matching pages found.</div>
+        </aside>
+
+        <div class="content-shell">
+            <header class="main-header">
+                <div class="brand-block header-brand">
+                    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="brand-text">
+                        <div class="brand">Full Gospel Churches of Kenya - Njiru</div>
+                        <div class="tagline header-tag">House of Bread for All Nations</div>
+                    </div>
+                </div>
+                <div class="search-wrap">
+                    <label class="sr-only" for="site-search">Search pages</label>
+                    <input id="site-search" type="search" placeholder="Search pages..." aria-label="Search pages" />
+                </div>
+            </header>
+
+            <main class="page">
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="footer">
+                &copy; 2026 Full Gospel Churches of Kenya - Njiru | A place to worship, grow, and serve.
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('site-sidebar');
+        const searchInput = document.getElementById('site-search');
+        const navItems = Array.from(document.querySelectorAll('.nav-item'));
+        const noResults = document.getElementById('no-results');
+
+        if (menuToggle && sidebar) {
+            menuToggle.addEventListener('click', function () {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!isExpanded));
+                this.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
+                sidebar.hidden = isExpanded;
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                    menuToggle.click();
+                    menuToggle.focus();
+                }
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const query = this.value.trim().toLowerCase();
+                let visibleCount = 0;
+
+                navItems.forEach(function (item) {
+                    const text = item.textContent.toLowerCase();
+                    const match = !query || text.includes(query);
+                    item.style.display = match ? 'block' : 'none';
+                    if (match) visibleCount += 1;
+                });
+
+                noResults.hidden = visibleCount !== 0;
+            });
+        }
+    </script>
+</body>
+</html>

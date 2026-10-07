@@ -1,0 +1,139 @@
+{% extends 'website/base.html' %}
+
+{% block title %}Home | Full Gospel Churches of Kenya - Njiru{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Full Gospel Churches of Kenya - Njiru</h1>
+    <p class="lead">
+        A place where faith grows, lives are transformed, and God’s love is shared.
+    </p>
+    <div class="cta-row">
+        <a class="btn btn-primary" href="{% url 'about' %}">Join Us</a>
+        <a class="btn btn-secondary" href="{% url 'events' %}">Learn More</a>
+    </div>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <h2>Welcome to Our Church</h2>
+        <p>A community of believers growing together in faith.</p>
+    </div>
+
+    <p class="home-welcome-copy">
+        We are a community of believers committed to following Jesus Christ, growing in faith,
+        serving others, and sharing the message of God's love.
+    </p>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <h2>Our Services</h2>
+        <p>Come and worship with us.</p>
+    </div>
+
+    <div class="grid service-grid">
+        <article class="card service-card">
+            <div class="card-icon">✝️</div>
+            <h3>Sunday Service</h3>
+            <p>9:00 AM - 12:00 PM</p>
+        </article>
+        <article class="card service-card">
+            <div class="card-icon">🙏</div>
+            <h3>Midweek Service</h3>
+            <p>Wednesday, 6:00 PM - 8:00 PM</p>
+        </article>
+    </div>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <h2>Upcoming Events</h2>
+        <p>Stay connected with what is happening in our church.</p>
+    </div>
+
+    <div class="grid event-grid">
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=900&q=82" alt="Sunday Worship Service" />
+            <div class="card-body">
+                <h3>Sunday Worship Service</h3>
+                <p>Join us for worship, prayer, and the Word of God.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'events' %}">View Event</a>
+            </div>
+        </article>
+
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=82" alt="Youth Fellowship" />
+            <div class="card-body">
+                <h3>Youth Fellowship</h3>
+                <p>A time for young people to fellowship and grow in faith.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'events' %}">Learn More</a>
+            </div>
+        </article>
+
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=82" alt="Kigocco Sunday" />
+            <div class="card-body">
+                <h3>Kigocco Sunday</h3>
+                <p>Join us for a special Sunday of worship, fellowship, and community.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'events' %}">View Event</a>
+            </div>
+        </article>
+
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=900&q=82" alt="Thanksgiving" />
+            <div class="card-body">
+                <h3>Thanksgiving</h3>
+                <p>A time to gather, give thanks, and celebrate God's goodness.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'events' %}">View Event</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section-block">
+    <div class="section-heading">
+        <h2>Latest Teachings</h2>
+        <p>Grow your faith through God's Word.</p>
+    </div>
+
+    <div class="grid teaching-grid">
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=900&q=82" alt="Growing in Faith" />
+            <div class="card-body">
+                <h3>Growing in Faith</h3>
+                <p>Discover how to strengthen your relationship with God.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'teachings' %}">Read More</a>
+            </div>
+        </article>
+
+        <article class="card image-card">
+            <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=900&q=82" alt="The Love of Jesus" />
+            <div class="card-body">
+                <h3>The Love of Jesus</h3>
+                <p>Learn more about the love and grace of Jesus Christ.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'teachings' %}">Read More</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="giving-spotlight">
+    <div class="giving-box">
+        <h3>Full Gospel Churches of Kenya - Njiru</h3>
+        <p class="tagline">Growing in Faith. Serving God. Sharing His Love.</p>
+        <div class="giving-details">
+            <p><strong>M-Pesa Paybill</strong> 247247</p>
+            <p><strong>Account</strong> 725807</p>
+            <a class="btn btn-primary" href="{% url 'tithes_offerings' %}">Giving Details</a>
+        </div>
+        <nav class="home-footer-links" aria-label="Footer navigation">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'sermons' %}">Sermons</a>
+            <a href="{% url 'tithes_offerings' %}">Tithes &amp; Offerings</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+    </div>
+</section>
+{% endblock %}
