@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
-    <script src="{% static 'js/site-search.js' %}" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet"
@@ -18,6 +18,7 @@
 </head>
 
 <body class="announcements-page">
+{% include 'partials/page_chrome.html' %}
 
 <!-- ================= NAVIGATION ================= -->
 

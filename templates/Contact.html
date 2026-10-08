@@ -16,7 +16,7 @@
           href="{% static 'css/style.css' %}">
         <link rel="stylesheet"
             href="{% static 'css/contact.css' %}">
-        <script src="{% static 'js/site-search.js' %}" defer></script>
+        <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -26,6 +26,7 @@
 
 
 <body class="contact-page">
+{% include 'partials/page_chrome.html' %}
 
 
 <!-- ================= NAVIGATION ================= -->

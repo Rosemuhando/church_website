@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="{% static 'js/site-search.js' %}" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
 </head>
 <body class="gallery-page">
+    {% include 'partials/page_chrome.html' %}
     <header class="navbar">
         <a class="logo" href="{% url 'home' %}">
             <i class="fa-solid fa-cross" aria-hidden="true"></i>

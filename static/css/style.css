@@ -34,6 +34,70 @@ a {
     text-decoration: none;
 }
 
+.page-chrome {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e0e5f1;
+    background: #f4eeff;
+}
+
+.page-chrome-inner {
+    width: min(1180px, calc(100% - 48px));
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 auto;
+}
+
+.page-chrome-title {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    overflow: hidden;
+    color: #173b8f;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.page-chrome-title > i {
+    flex: 0 0 auto;
+    color: #5b2c91;
+}
+
+.page-chrome-controls {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 5px;
+}
+
+.page-chrome-controls button {
+    width: 32px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #173b8f;
+    background: transparent;
+    cursor: pointer;
+}
+
+.page-chrome-controls button:hover {
+    border-color: #d9deed;
+    background: #fff;
+}
+
+.page-chrome-controls button:focus-visible {
+    outline: 2px solid #5b2c91;
+    outline-offset: 2px;
+}
+
 .navbar {
     width: min(1180px, calc(100% - 48px));
     min-height: 82px;

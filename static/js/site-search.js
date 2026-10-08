@@ -1,3 +1,15 @@
+const currentPageTitle = document.querySelector('[data-current-page-title]');
+if (currentPageTitle) {
+    const title = document.title.split('|')[0].trim();
+    currentPageTitle.textContent = window.location.pathname === '/' && title === 'Full Gospel Churches of Kenya - Njiru'
+        ? 'Home'
+        : title;
+}
+
+document.querySelector('[data-page-back]')?.addEventListener('click', () => window.history.back());
+document.querySelector('[data-page-forward]')?.addEventListener('click', () => window.history.forward());
+document.querySelector('[data-page-refresh]')?.addEventListener('click', () => window.location.reload());
+
 const menu = document.querySelector('[data-site-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 let menuOverlay;
