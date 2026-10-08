@@ -7,7 +7,13 @@ from .models import Sermon
 
 
 class SermonAccessTests(TestCase):
-    def test_public_can_view_sermons_without_add_form(self):
+    def test_member_can_view_sermons_without_add_form(self):
+        user = get_user_model().objects.create_user(
+            username='member',
+            password='test-password',
+        )
+        self.client.force_login(user)
+
         response = self.client.get(reverse('sermons'))
 
         self.assertEqual(response.status_code, 200)
@@ -17,6 +23,25 @@ class SermonAccessTests(TestCase):
         response = self.client.post(reverse('sermons'), {
             'title': 'Unauthorized sermon',
             'preacher': 'Visitor',
+        })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.headers['Location'],
+            f"{reverse('login')}?next={reverse('sermons')}",
+        )
+        self.assertEqual(Sermon.objects.count(), 0)
+
+    def test_member_cannot_post_a_sermon(self):
+        user = get_user_model().objects.create_user(
+            username='member-without-permission',
+            password='test-password',
+        )
+        self.client.force_login(user)
+
+        response = self.client.post(reverse('sermons'), {
+            'title': 'Unauthorized sermon',
+            'preacher': 'Church member',
         })
 
         self.assertEqual(response.status_code, 403)

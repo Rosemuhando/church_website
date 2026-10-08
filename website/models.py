@@ -30,3 +30,18 @@ class GalleryPhoto(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PastorProfile(models.Model):
+    slug = models.SlugField(max_length=80, unique=True)
+    name = models.CharField(max_length=160)
+    title = models.CharField(max_length=80)
+    biography = models.TextField()
+    photo = models.ImageField(upload_to='pastors/', blank=True)
+    display_order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['display_order', 'id']
+
+    def __str__(self):
+        return self.name

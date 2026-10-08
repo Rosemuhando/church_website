@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render
 
@@ -15,6 +16,8 @@ def can_add_sermons(user):
     )
 
 
+@login_required
+@login_required
 def sermon_list(request):
     authorized = can_add_sermons(request.user)
 

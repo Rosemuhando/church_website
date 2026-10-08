@@ -6,55 +6,45 @@ if (currentPageTitle) {
         : title;
 }
 
+const pageChrome = document.querySelector('.page-chrome');
+const siteNavbar = document.querySelector('.navbar');
+if (pageChrome && siteNavbar) {
+    const siteLogo = siteNavbar.querySelector('.logo');
+    if (siteLogo) {
+        siteLogo.after(pageChrome);
+    } else {
+        siteNavbar.prepend(pageChrome);
+    }
+}
+
 document.querySelector('[data-page-back]')?.addEventListener('click', () => window.history.back());
 document.querySelector('[data-page-forward]')?.addEventListener('click', () => window.history.forward());
 document.querySelector('[data-page-refresh]')?.addEventListener('click', () => window.location.reload());
 
 const menu = document.querySelector('[data-site-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
-let menuOverlay;
 
 if (menu && menuToggle) {
-    menuOverlay = document.createElement('button');
-    menuOverlay.type = 'button';
-    menuOverlay.className = 'site-menu-overlay';
-    menuOverlay.setAttribute('aria-label', 'Close site menu');
-    menuOverlay.hidden = true;
-    document.body.append(menuOverlay);
+    const setMenuExpanded = (isExpanded, returnFocus = false) => {
+        document.body.classList.toggle('site-navigation-collapsed', !isExpanded);
+        menuToggle.setAttribute('aria-expanded', String(isExpanded));
+        menuToggle.setAttribute('aria-label', isExpanded ? 'Hide site navigation' : 'Show site navigation');
+        menu.setAttribute('aria-hidden', String(!isExpanded));
 
-    const setMenuOpen = (isOpen, returnFocus = false) => {
-        document.body.classList.toggle('site-menu-open', isOpen);
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-        menuToggle.setAttribute('aria-label', isOpen ? 'Close site menu' : 'Open site menu');
-        const menuLabel = menuToggle.querySelector('[data-menu-label]');
-        if (menuLabel) {
-            menuLabel.textContent = isOpen ? 'Close' : 'Menu';
-        }
-        menu.setAttribute('aria-hidden', String(!isOpen));
-        menuOverlay.hidden = !isOpen;
-
-        if (isOpen) {
-            menu.querySelector('a')?.focus();
-        } else if (returnFocus) {
+        if (returnFocus) {
             menuToggle.focus();
         }
     };
 
+    setMenuExpanded(true);
     menuToggle.addEventListener('click', () => {
-        setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-    });
-    menuOverlay.addEventListener('click', () => setMenuOpen(false, true));
-    menu.addEventListener('click', (event) => {
-        if (event.target.closest('a')) {
-            setMenuOpen(false);
-        }
+        setMenuExpanded(menuToggle.getAttribute('aria-expanded') !== 'true');
     });
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-            setMenuOpen(false, true);
+            setMenuExpanded(false, true);
         }
     });
-
 }
 
 const sitePages = [
@@ -67,6 +57,8 @@ const sitePages = [
     { label: 'Teachings', url: '/teachings/', keywords: ['teaching', 'latest teachings', 'bible study'] },
     { label: 'Announcements', url: '/announcements/', keywords: ['announcement', 'updates', 'church news'] },
     { label: 'Tithes & Offerings', url: '/giving/', keywords: ['tithe', 'tithes', 'offering', 'offerings', 'giving', 'give', 'paybill'] },
+    { label: 'Sign in', url: '/login/', keywords: ['login', 'member account', 'user access'] },
+    { label: 'Create account', url: '/register/', keywords: ['register', 'sign up', 'new member'] },
 ];
 
 const normalizeSearch = (value) => value

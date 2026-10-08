@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events | Full Gospel Churches of Kenya - Njiru</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
     <link rel="stylesheet" href="{% static 'css/events.css' %}">
-    <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=6" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="events-page">
@@ -16,7 +16,10 @@
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-cross" aria-hidden="true"></i>
-            <span>Full Gospel Churches of Kenya - Njiru</span>
+            <span class="brand-copy">
+                <strong class="brand-name">Full Gospel Churches of Kenya - Njiru</strong>
+                <small class="brand-tagline">House of Bread for All Nations</small>
+            </span>
         </div>
 
         <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
@@ -35,6 +38,8 @@
             <a href="{% url 'announcements' %}">Announcements</a>
             <a href="{% url 'gallery' %}"><i class="fa-solid fa-images" aria-hidden="true"></i> Gallery</a>
             <a href="{% url 'giving' %}">Tithes &amp; Offerings</a>
+            <a href="{% url 'login' %}"><i class="fa-solid fa-user" aria-hidden="true"></i> Sign in</a>
+            <a href="{% url 'register' %}"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Create account</a>
         </nav>
 
         <form class="site-search" role="search" data-page-search>

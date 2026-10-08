@@ -9,9 +9,9 @@
 
     <title>Full Gospel Churches of Kenya - Njiru</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=6" defer></script>
 </head>
 
 <body>
@@ -26,7 +26,10 @@
 
             <a href="/" class="logo">
                 <i class="fa-solid fa-cross home-logo-icon" aria-hidden="true"></i>
-                Full Gospel Churches of Kenya - Njiru
+                <span class="brand-copy">
+                    <strong class="brand-name">Full Gospel Churches of Kenya - Njiru</strong>
+                    <small class="brand-tagline">House of Bread for All Nations</small>
+                </span>
             </a>
 
             <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
@@ -45,6 +48,8 @@
                 <li><a href="/announcements/">Announcements</a></li>
                 <li><a href="{% url 'gallery' %}">Gallery</a></li>
                 <li><a href="/giving/">Tithes &amp; Offerings</a></li>
+                <li><a href="{% url 'login' %}">Sign in</a></li>
+                <li><a href="{% url 'register' %}">Create account</a></li>
             </ul>
 
             <form class="site-search" role="search" data-page-search>
@@ -80,8 +85,8 @@
                     and God's love is shared.
                 </p>
 
-                <a href="#" class="btn btn-primary">
-                    Join Us
+                <a href="{% url 'register' %}" class="btn btn-primary">
+                    Join as a Member
                 </a>
 
                 <a href="/about/" class="btn btn-purple">

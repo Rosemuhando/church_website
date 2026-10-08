@@ -8,9 +8,9 @@
 
     <title>Announcements | Full Gospel Churches of Kenya - Njiru</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
     <link rel="stylesheet" href="{% static 'css/announcement.css' %}">
-    <script src="{% static 'js/site-search.js' %}?v=2" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=6" defer></script>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet"
@@ -26,7 +26,10 @@
 
     <div class="logo">
         <i class="fa-solid fa-cross"></i>
-        <span>Full Gospel Churches of Kenya - Njiru</span>
+        <span class="brand-copy">
+            <strong class="brand-name">Full Gospel Churches of Kenya - Njiru</strong>
+            <small class="brand-tagline">House of Bread for All Nations</small>
+        </span>
     </div>
 
     <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
@@ -71,6 +74,14 @@
 
         <a href="{% url 'giving' %}">
             <i class="fa-solid fa-hand-holding-heart"></i> Tithes &amp; Offerings
+        </a>
+
+        <a href="{% url 'login' %}">
+            <i class="fa-solid fa-user"></i> Sign in
+        </a>
+
+        <a href="{% url 'register' %}">
+            <i class="fa-solid fa-user-plus"></i> Create account
         </a>
 
     </nav>

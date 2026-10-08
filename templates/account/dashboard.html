@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | Full Gospel Churches of Kenya - Njiru</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="{% static 'js/site-search.js' %}?v=6" defer></script>
+</head>
+<body class="auth-page">
+    <header class="navbar auth-navbar">
+        <a class="logo" href="{% url 'home' %}">
+            <i class="fa-solid fa-cross" aria-hidden="true"></i>
+            <span class="brand-copy">
+                <strong class="brand-name">Full Gospel Churches of Kenya - Njiru</strong>
+                <small class="brand-tagline">House of Bread for All Nations</small>
+            </span>
+        </a>
+        {% include 'partials/page_chrome.html' %}
+        <form method="post" action="{% url 'logout' %}" class="auth-logout-form">
+            {% csrf_token %}
+            <button class="auth-home-link" type="submit"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Sign out</button>
+        </form>
+    </header>
+
+    <main class="auth-main">
+        <section class="auth-panel account-panel" aria-labelledby="account-heading">
+            <div class="auth-mark"><i class="fa-solid fa-circle-user" aria-hidden="true"></i></div>
+            <p class="auth-eyebrow">CHURCH ACCOUNT</p>
+            <h1 id="account-heading">Welcome, {{ user.get_short_name|default:user.username }}</h1>
+            <p class="auth-intro">You are signed in to your church account.</p>
+            <div class="account-links">
+                <a href="{% url 'teachings' %}"><i class="fa-solid fa-book-open" aria-hidden="true"></i> View teachings</a>
+                <a href="{% url 'gallery' %}"><i class="fa-solid fa-images" aria-hidden="true"></i> Church gallery</a>
+                <a href="{% url 'contact' %}"><i class="fa-solid fa-phone" aria-hidden="true"></i> Contact the church</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
