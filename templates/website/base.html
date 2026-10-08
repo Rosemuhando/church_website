@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Full Gospel Churches of Kenya - Njiru{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=2" />
 </head>
 <body class="{% block body_class %}{% endblock %}">
     <div class="layout">
@@ -61,44 +61,6 @@
         </div>
     </div>
 
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const sidebar = document.getElementById('site-sidebar');
-        const searchInput = document.getElementById('site-search');
-        const navItems = Array.from(document.querySelectorAll('.nav-item'));
-        const noResults = document.getElementById('no-results');
-
-        if (menuToggle && sidebar) {
-            menuToggle.addEventListener('click', function () {
-                const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                this.setAttribute('aria-expanded', String(!isExpanded));
-                this.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
-                sidebar.hidden = isExpanded;
-            });
-
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-                    menuToggle.click();
-                    menuToggle.focus();
-                }
-            });
-        }
-
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const query = this.value.trim().toLowerCase();
-                let visibleCount = 0;
-
-                navItems.forEach(function (item) {
-                    const text = item.textContent.toLowerCase();
-                    const match = !query || text.includes(query);
-                    item.style.display = match ? 'block' : 'none';
-                    if (match) visibleCount += 1;
-                });
-
-                noResults.hidden = visibleCount !== 0;
-            });
-        }
-    </script>
+    <script src="{% static 'js/script.js' %}" defer></script>
 </body>
 </html>

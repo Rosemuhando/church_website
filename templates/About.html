@@ -1,0 +1,360 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Full Gospel Churches of Kenya - Njiru</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/site-search.js' %}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+    <header class="navbar">
+
+        <div class="logo">
+            <h2><i class="fa-solid fa-cross about-brand-icon" aria-hidden="true"></i> Full Gospel Churches of Kenya - Njiru</h2>
+            <span>House of Bread for All Nations</span>
+        </div>
+
+        <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
+            <i class="fa-solid fa-bars" data-menu-open-icon aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark" data-menu-close-icon aria-hidden="true"></i>
+            <span data-menu-label>Menu</span>
+        </button>
+
+        <nav class="site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+            <a href="/">Home</a>
+            <a href="/about/" class="active">About</a>
+            <a href="{% url 'events' %}">Events</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="/sermons/">Sermons</a>
+            <a href="/teachings/">Teachings</a>
+            <a href="{% url 'announcements' %}">Announcements</a>
+            <a href="{% url 'gallery' %}"><i class="fa-solid fa-images" aria-hidden="true"></i> Gallery</a>
+            <a href="{% url 'giving' %}">Tithes &amp; Offerings</a>
+        </nav>
+
+        <form class="site-search" role="search" data-page-search>
+            <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">
+            <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+            <span class="site-search-status" aria-live="polite"></span>
+        </form>
+
+    </header>
+
+
+    <!-- =========================
+         ABOUT HERO SECTION
+    ========================== -->
+    <section class="about-hero">
+
+        <div class="hero-content">
+
+            <p class="small-heading"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> WELCOME TO</p>
+
+            <h1>Full Gospel Churches of Kenya - Njiru</h1>
+
+            <h2>House of Bread for All Nations</h2>
+
+            <p>
+                A place where people come together to worship God,
+                grow in faith, receive His Word and experience
+                His love.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT THE CHURCH
+    ========================== -->
+    <section class="about-section">
+
+        <div class="about-container">
+
+            <div class="about-text">
+
+                <p class="section-label">WHO WE ARE</p>
+
+                <h2><i class="fa-solid fa-church about-heading-icon" aria-hidden="true"></i> About Our Church</h2>
+
+                <p>
+                    Full Gospel Churches of Kenya - Njiru is a Christian community committed
+                    to spreading the Word of God and creating a place where
+                    everyone can come and encounter God's love.
+                </p>
+
+                <p>
+                    We believe that the church is more than a building.
+                    It is a family of believers who worship together,
+                    encourage one another and serve God and the community.
+                </p>
+
+                <p>
+                    Our desire is to help people grow spiritually,
+                    discover their purpose and develop a deeper relationship
+                    with Jesus Christ.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <img class="about-community-photo" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="A church community sharing time together" loading="lazy">
+
+                <div class="card-icon" aria-hidden="true"><i class="fa-solid fa-bread-slice"></i></div>
+
+                <h3>House of Bread for All Nations</h3>
+
+                <p>
+                    A welcoming place for people from every background
+                    to receive God's Word, find hope and grow in faith.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OUR MISSION
+    ========================== -->
+    <section class="mission-section">
+
+        <div class="section-heading">
+
+            <p class="section-label">OUR PURPOSE</p>
+
+            <h2>Our Mission</h2>
+
+            <p>
+                To share the Gospel of Jesus Christ, build strong
+                Christian families and serve our community with love.
+            </p>
+
+        </div>
+
+
+        <div class="mission-cards">
+
+            <div class="mission-card">
+                <div class="mission-card-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></div>
+                <div class="mission-number">01</div>
+
+                <h3>Faith</h3>
+
+                <p>
+                    Helping believers develop a strong and lasting
+                    relationship with God.
+                </p>
+            </div>
+
+
+            <div class="mission-card">
+                <div class="mission-card-icon" aria-hidden="true"><i class="fa-solid fa-people-group"></i></div>
+                <div class="mission-number">02</div>
+
+                <h3>Fellowship</h3>
+
+                <p>
+                    Building a loving church family where people
+                    support and encourage one another.
+                </p>
+            </div>
+
+
+            <div class="mission-card">
+                <div class="mission-card-icon" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div class="mission-number">03</div>
+
+                <h3>Service</h3>
+
+                <p>
+                    Serving God and our community by using our gifts
+                    to make a positive difference.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CHURCH LEADERSHIP
+    ========================== -->
+    <section class="leadership-section">
+
+        <div class="section-heading">
+
+            <p class="section-label">OUR LEADERSHIP</p>
+
+            <h2>Our Pastors</h2>
+
+            <p>
+                Serving God's people with love, faith and dedication.
+            </p>
+
+        </div>
+
+
+        <div class="pastors-container">
+
+            <div class="pastor-card">
+
+                <div class="pastor-image">
+                    <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                    <span>PASTOR</span>
+                </div>
+
+                <div class="pastor-info">
+
+                    <p class="pastor-title">REVEREND</p>
+
+                    <h3>Reverend Antony</h3>
+
+                    <p>
+                        Pastor Antony serves as a spiritual leader
+                        of Full Gospel Churches of Kenya - Njiru, guiding the congregation
+                        through God's Word and prayer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="pastor-card">
+
+                <div class="pastor-image">
+                    <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                    <span>PASTOR</span>
+                </div>
+
+                <div class="pastor-info">
+
+                    <p class="pastor-title">PASTOR</p>
+
+                    <h3>Pastor Judy</h3>
+
+                    <p>
+                        Pastor Judy serves alongside the church leadership,
+                        supporting the congregation and ministry with
+                        love, wisdom and dedication.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOCATION
+    ========================== -->
+    <section class="location-section">
+
+        <div class="location-container">
+
+            <div class="location-icon" aria-hidden="true">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div>
+                <p class="section-label">WHERE WE ARE</p>
+
+                <h2>Visit Us</h2>
+
+                <p>
+                    Full Gospel Churches of Kenya - Njiru
+                    <br>
+                    <strong>New Njiru, Nairobi, Kenya</strong>
+                </p>
+
+                <p>
+                    We welcome you to join us for worship,
+                    fellowship and the Word of God.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALL TO ACTION
+    ========================== -->
+    <section class="about-cta">
+
+        <div>
+
+            <i class="fa-solid fa-hands-praying cta-icon" aria-hidden="true"></i>
+
+            <h2>Come and Worship With Us</h2>
+
+            <p>
+                You are welcome at the House of Bread for All Nations.
+            </p>
+
+            <a href="/contact/" class="cta-button">
+                Contact Us
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <h3>Full Gospel Churches of Kenya - Njiru</h3>
+
+            <p>House of Bread for All Nations</p>
+
+            <p>New Njiru, Nairobi, Kenya</p>
+
+            <p class="site-giving-details">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                M-Pesa Paybill <strong>247247</strong>
+                <span>Account <strong>725807</strong></span>
+                <a href="{% url 'giving' %}">Giving details</a>
+            </p>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 Full Gospel Churches of Kenya - Njiru.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

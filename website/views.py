@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Announcement, GalleryPhoto
+
 
 def home(request):
     return render(request, 'website/home.html', {'page_title': 'Home'})
@@ -10,7 +12,9 @@ def about(request):
 
 
 def announcements(request):
-    return render(request, 'website/announcements.html', {'page_title': 'Announcements'})
+    return render(request, 'Announcement.htm', {
+        'announcements': Announcement.objects.all(),
+    })
 
 
 def sermons(request):
@@ -26,7 +30,9 @@ def contact(request):
 
 
 def gallery(request):
-    return render(request, 'website/gallery.html', {'page_title': 'Gallery'})
+    return render(request, 'Gallery.html', {
+        'photos': GalleryPhoto.objects.filter(is_published=True),
+    })
 
 
 def teachings(request):

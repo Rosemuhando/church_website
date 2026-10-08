@@ -1,0 +1,359 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Full Gospel Churches of Kenya - Njiru</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="{% static 'js/site-search.js' %}" defer></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+         ========================= -->
+
+    <header>
+        <nav class="navbar">
+
+            <a href="/" class="logo">
+                <i class="fa-solid fa-cross home-logo-icon" aria-hidden="true"></i>
+                Full Gospel Churches of Kenya - Njiru
+            </a>
+
+            <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
+                <i class="fa-solid fa-bars" data-menu-open-icon aria-hidden="true"></i>
+                <i class="fa-solid fa-xmark" data-menu-close-icon aria-hidden="true"></i>
+                <span data-menu-label>Menu</span>
+            </button>
+
+            <ul class="nav-links site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/events/">Events</a></li>
+                <li><a href="/contact/">Contact</a></li>
+                <li><a href="/sermons/">Sermons</a></li>
+                <li><a href="/teachings/">Teachings</a></li>
+                <li><a href="/announcements/">Announcements</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li><a href="/giving/">Tithes &amp; Offerings</a></li>
+            </ul>
+
+            <form class="site-search" role="search" data-page-search>
+                <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">
+                <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                <span class="site-search-status" aria-live="polite"></span>
+            </form>
+
+        </nav>
+    </header>
+
+
+    <!-- =========================
+         HERO
+         ========================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="home-hero-icon" aria-hidden="true">
+                    <i class="fa-solid fa-church"></i>
+                </div>
+
+                <h1>
+                    Welcome to Full Gospel Churches of Kenya - Njiru
+                </h1>
+
+                <p>
+                    A place where faith grows, lives are transformed,
+                    and God's love is shared.
+                </p>
+
+                <a href="#" class="btn btn-primary">
+                    Join Us
+                </a>
+
+                <a href="/about/" class="btn btn-purple">
+                    Learn More
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WELCOME
+             ========================= -->
+
+           <section class="section">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-people-group home-section-icon" aria-hidden="true"></i>
+
+                    <h2>
+                        Welcome to Our Church
+                    </h2>
+
+                    <p>
+                        A community of believers growing together in faith.
+                    </p>
+
+                </div>
+
+                <p>
+                    We are a community of believers committed to following
+                    Jesus Christ, growing in faith, serving others, and
+                    sharing the message of God's love.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERVICES
+             ========================= -->
+
+        <section class="section blue-section">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-hands-praying home-section-icon" aria-hidden="true"></i>
+
+                    <h2>
+                        Our Services
+                    </h2>
+
+                    <p>
+                        Come and worship with us.
+                    </p>
+
+                </div>
+
+                <div class="cards">
+
+                    <div class="card">
+                        <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-church"></i></div>
+                        <h3>Sunday Service</h3>
+                        <p>9:00 AM - 12:00 PM</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-book-bible"></i></div>
+                        <h3>Midweek Service</h3>
+                        <p>Wednesday, 6:00 PM - 8:00 PM</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             UPCOMING EVENTS
+             ========================= -->
+
+        <section id="upcoming-events" class="section">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-calendar-days home-section-icon" aria-hidden="true"></i>
+
+                    <h2>
+                        Upcoming Events
+                    </h2>
+
+                    <p>
+                        Stay connected with what is happening in our church.
+                    </p>
+
+                </div>
+
+                <div class="cards">
+
+                    <article class="card home-photo-card">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Sunlight falling across a church sanctuary" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-music"></i></div>
+                            <h3>Sunday Worship Service</h3>
+                            <p>Join us for worship, prayer, and the Word of God.</p>
+                            <a href="/events/" class="btn btn-blue">View Event</a>
+                        </div>
+
+                    </article>
+
+
+                    <article class="card home-photo-card">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Young people gathering together at an event" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-people-group"></i></div>
+                            <h3>Youth Fellowship</h3>
+                            <p>A time for young people to fellowship and grow in faith.</p>
+                            <a href="/about/" class="btn btn-purple">Learn More</a>
+                        </div>
+
+                    </article>
+
+
+                    <article class="card home-photo-card" id="kigocco-sunday">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="A joyful community gathering" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-church"></i></div>
+                            <h3>Kigocco Sunday</h3>
+                            <p>Join us for a special Sunday of worship, fellowship, and community.</p>
+                            <a href="/events/#kigocco-sunday" class="btn btn-blue">View Event</a>
+                        </div>
+
+                    </article>
+
+
+                    <article class="card home-photo-card">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Congregation worshipping together in thanksgiving to the Lord" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                            <h3>Thanksgiving</h3>
+                            <p>A time to gather, give thanks, and celebrate God's goodness.</p>
+                            <a href="/events/#thanksgiving" class="btn btn-purple">View Event</a>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LATEST TEACHINGS
+             ========================= -->
+
+        <section id="latest-teachings" class="section purple-section">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-book-open home-section-icon" aria-hidden="true"></i>
+
+                    <h2>
+                        Latest Teachings
+                    </h2>
+
+                    <p>
+                        Grow your faith through God's Word.
+                    </p>
+
+                </div>
+
+                <div class="cards">
+
+                    <article class="card home-photo-card">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="An open Bible ready for reading" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-seedling"></i></div>
+                            <h3>Growing in Faith</h3>
+                            <p>Discover how to strengthen your relationship with God.</p>
+                            <a href="#" class="btn btn-blue">Read More</a>
+                        </div>
+
+                    </article>
+
+
+                    <article class="card home-photo-card">
+
+                        <img class="home-card-photo" src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Warm morning light over a peaceful landscape" loading="lazy">
+
+                        <div class="home-photo-card-body">
+                            <div class="home-card-icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></div>
+                            <h3>The Love of Jesus</h3>
+                            <p>Learn more about the love and grace of Jesus Christ.</p>
+                            <a href="#" class="btn btn-purple">Read More</a>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <h3>
+                Full Gospel Churches of Kenya - Njiru
+            </h3>
+
+            <p>
+                Growing in Faith. Serving God. Sharing His Love.
+            </p>
+
+            <p class="site-giving-details">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                M-Pesa Paybill <strong>247247</strong>
+                <span>Account <strong>725807</strong></span>
+                <a href="{% url 'giving' %}">Giving details</a>
+            </p>
+
+            <div class="footer-links">
+
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/sermons/">Sermons</a>
+                <a href="/giving/">Tithes &amp; Offerings</a>
+                <a href="/contact/">Contact</a>
+
+            </div>
+
+            <p>
+                &copy; 2026 Full Gospel Churches of Kenya - Njiru. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

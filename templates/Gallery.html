@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Gallery | Full Gospel Churches of Kenya - Njiru</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="{% static 'js/site-search.js' %}" defer></script>
+</head>
+<body class="gallery-page">
+    <header class="navbar">
+        <a class="logo" href="{% url 'home' %}">
+            <i class="fa-solid fa-cross" aria-hidden="true"></i>
+            <span>Full Gospel Churches of Kenya - Njiru</span>
+        </a>
+        <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
+            <i class="fa-solid fa-bars" data-menu-open-icon aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark" data-menu-close-icon aria-hidden="true"></i>
+            <span data-menu-label>Menu</span>
+        </button>
+        <nav class="site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+            <a href="{% url 'about' %}"><i class="fa-solid fa-church" aria-hidden="true"></i> About</a>
+            <a href="{% url 'events' %}"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Events</a>
+            <a href="{% url 'contact' %}"><i class="fa-solid fa-phone" aria-hidden="true"></i> Contact</a>
+            <a href="{% url 'sermons' %}"><i class="fa-solid fa-book-bible" aria-hidden="true"></i> Sermons</a>
+            <a href="{% url 'teachings' %}"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Teachings</a>
+            <a href="{% url 'announcements' %}"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i> Announcements</a>
+            <a href="{% url 'gallery' %}" class="active" aria-current="page"><i class="fa-solid fa-images" aria-hidden="true"></i> Gallery</a>
+            <a href="{% url 'giving' %}"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> Tithes &amp; Offerings</a>
+        </nav>
+        <form class="site-search" role="search" data-page-search>
+            <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">
+            <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+            <span class="site-search-status" aria-live="polite"></span>
+        </form>
+    </header>
+
+    <main>
+        <section class="gallery-hero">
+            <div class="gallery-hero-content">
+                <i class="fa-solid fa-images" aria-hidden="true"></i>
+                <p class="gallery-eyebrow">LIFE IN OUR CHURCH</p>
+                <h1>Church Gallery</h1>
+                <p>Moments of worship, fellowship, and service at Full Gospel Churches of Kenya - Njiru.</p>
+            </div>
+        </section>
+
+        <section class="gallery-section" aria-labelledby="gallery-heading">
+            <div class="gallery-section-heading">
+                <div>
+                    <p class="gallery-eyebrow">OUR COMMUNITY</p>
+                    <h2 id="gallery-heading">Shared moments</h2>
+                </div>
+                {% if user.is_staff %}
+                <a class="gallery-manage-link" href="{% url 'admin:website_galleryphoto_changelist' %}">
+                    <i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i> Manage photos
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="gallery-grid">
+                {% for photo in photos %}
+                <figure class="gallery-photo">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:photo.title }}" loading="lazy">
+                    <figcaption>
+                        <h3>{{ photo.title }}</h3>
+                        {% if photo.caption %}<p>{{ photo.caption }}</p>{% endif %}
+                        {% if photo.event_date %}<time datetime="{{ photo.event_date|date:'Y-m-d' }}">{{ photo.event_date|date:'d M Y' }}</time>{% endif %}
+                    </figcaption>
+                </figure>
+                {% empty %}
+                <div class="gallery-empty">
+                    <i class="fa-regular fa-images" aria-hidden="true"></i>
+                    <h3>Photos are coming soon</h3>
+                    <p>Church gallery photos will appear here after they are added by an administrator.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <i class="fa-solid fa-cross" aria-hidden="true"></i>
+            <h3>Full Gospel Churches of Kenya - Njiru</h3>
+            <p>House of Bread for All Nations</p>
+            <div class="footer-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'teachings' %}">Teachings</a>
+                <a href="{% url 'gallery' %}">Gallery</a>
+                <a href="{% url 'giving' %}">Tithes &amp; Offerings</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,619 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us | Full Gospel Churches of Kenya - Njiru</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+        <link rel="stylesheet"
+            href="{% static 'css/contact.css' %}">
+        <script src="{% static 'js/site-search.js' %}" defer></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body class="contact-page">
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-cross"></i>
+
+        <span>Full Gospel Churches of Kenya - Njiru</span>
+
+    </div>
+
+    <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
+        <i class="fa-solid fa-bars" data-menu-open-icon aria-hidden="true"></i>
+        <i class="fa-solid fa-xmark" data-menu-close-icon aria-hidden="true"></i>
+        <span data-menu-label>Menu</span>
+    </button>
+
+    <nav class="site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+
+        <a href="{% url 'home' %}">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="{% url 'about' %}">
+            <i class="fa-solid fa-church"></i>
+            About
+        </a>
+
+        <a href="{% url 'events' %}">
+            <i class="fa-solid fa-calendar-days"></i>
+            Events
+        </a>
+
+        <a href="{% url 'contact' %}" class="active">
+            <i class="fa-solid fa-phone"></i>
+            Contact
+        </a>
+
+        <a href="{% url 'sermons' %}">
+            <i class="fa-solid fa-book-bible"></i>
+            Sermons
+        </a>
+
+        <a href="{% url 'teachings' %}">
+            <i class="fa-solid fa-book-open"></i>
+            Teachings
+        </a>
+
+        <a href="{% url 'announcements' %}">
+            <i class="fa-solid fa-bullhorn"></i>
+            Announcements
+        </a>
+
+        <a href="{% url 'gallery' %}">
+            <i class="fa-solid fa-images"></i>
+            Gallery
+        </a>
+
+        <a href="{% url 'giving' %}">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            Tithes &amp; Offerings
+        </a>
+
+    </nav>
+
+    <form class="site-search" role="search" data-page-search>
+        <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">
+        <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+        <span class="site-search-status" aria-live="polite"></span>
+    </form>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="contact-hero">
+
+    <div class="contact-hero-content">
+
+        <i class="fa-solid fa-hands-praying"></i>
+
+        <h1>Contact & Prayer</h1>
+
+        <p>
+            We would love to hear from you.
+            Reach out to us for inquiries, prayer requests
+            or spiritual support.
+        </p>
+
+        <a href="#contact-options" class="hero-contact-btn">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            Contact Us
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="contact-intro">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <h2>We Are Here for You</h2>
+
+    </div>
+
+    <div class="contact-intro-content">
+        <p>
+            If you have an inquiry, need prayer, or would like
+            to speak with the Reverend, you can contact us directly.
+            Your personal information and prayer request will be
+            treated as confidential.
+        </p>
+        <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&amp;fit=crop&amp;w=1000&amp;q=84" alt="A peaceful church sanctuary prepared for worship" loading="lazy">
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT CARDS ================= -->
+
+<section id="contact-options" class="contact-options">
+
+    <!-- PHONE -->
+
+    <div class="contact-card">
+
+        <img class="contact-card-photo" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Church members meeting together" loading="lazy">
+
+        <div class="contact-icon">
+
+            <i class="fa-solid fa-phone"></i>
+
+        </div>
+
+        <h3>Call the Reverend</h3>
+
+        <p>
+            For inquiries, prayer requests or spiritual support,
+            you can contact the Reverend directly.
+        </p>
+
+        <a href="tel:0725807540"
+           class="contact-btn">
+
+            <i class="fa-solid fa-phone"></i>
+
+            Call Now
+
+        </a>
+
+    </div>
+
+
+
+    <!-- WHATSAPP -->
+
+    <div class="contact-card">
+
+        <img class="contact-card-photo" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Friends supporting one another" loading="lazy">
+
+        <div class="contact-icon whatsapp-icon">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+        </div>
+
+        <h3>WhatsApp</h3>
+
+        <p>
+            Send a private message or prayer request
+            directly to the Reverend through WhatsApp.
+        </p>
+
+        <!-- Kenya country code -->
+
+        <a href="https://wa.me/254725807540"
+           target="_blank"
+           class="contact-btn whatsapp-btn">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            Message on WhatsApp
+
+        </a>
+
+    </div>
+
+
+
+    <!-- PRIVATE MESSAGE -->
+
+    <div class="contact-card">
+
+        <img class="contact-card-photo" src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="An open Bible for quiet prayer" loading="lazy">
+
+        <div class="contact-icon">
+
+            <i class="fa-solid fa-lock"></i>
+
+        </div>
+
+        <h3>Private Prayer Request</h3>
+
+        <p>
+            Send your prayer request privately.
+            It will not be displayed publicly on the website.
+        </p>
+
+        <a href="#private-message"
+           class="contact-btn">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Send Private Message
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CONFIDENTIAL MESSAGE ================= -->
+
+<section id="private-message"
+         class="private-message-section">
+
+    <div class="private-message-container">
+
+
+        <div class="private-message-heading">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            <h2>Confidential Message</h2>
+
+            <p>
+                Send a private inquiry or prayer request
+                directly to the church leadership.
+            </p>
+
+        </div>
+
+        {% if messages %}
+        <div class="contact-flash" role="status">
+            {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+        </div>
+        {% endif %}
+
+
+        <!-- IMPORTANT PRIVACY NOTICE -->
+
+        <div class="privacy-notice">
+
+            <i class="fa-solid fa-lock"></i>
+
+            <div>
+
+                <strong>Your message is confidential.</strong>
+
+                <p>
+                    Your message will not be published on the
+                    church website or displayed to other visitors.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MESSAGE FORM -->
+
+        <form method="POST"
+              action="{% url 'private_message' %}"
+              class="private-message-form">
+
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Your Name
+
+                </label>
+
+                {{ form.name }}
+                {{ form.name.errors }}
+
+            </div>
+
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    Phone Number
+
+                </label>
+
+                {{ form.phone }}
+                {{ form.phone.errors }}
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Email Address
+                    <span>(Optional)</span>
+
+                </label>
+
+                {{ form.email }}
+                {{ form.email.errors }}
+
+            </div>
+
+
+
+            <!-- MESSAGE TYPE -->
+
+            <div class="form-group">
+
+                <label for="message_type">
+
+                    <i class="fa-solid fa-list"></i>
+
+                    Message Type
+
+                </label>
+
+                {{ form.message_type }}
+                {{ form.message_type.errors }}
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div class="form-group">
+
+                <label for="message">
+
+                    <i class="fa-solid fa-message"></i>
+
+                    Your Message
+
+                </label>
+
+                {{ form.message }}
+                {{ form.message.errors }}
+
+            </div>
+
+
+
+            <!-- PRIVACY CONFIRMATION -->
+
+            <div class="privacy-checkbox">
+
+                {{ form.confidential }}
+
+                <label for="confidential">
+
+                    I understand that this is a private message
+                    and my information will be handled confidentially.
+
+                </label>
+
+            </div>
+            {{ form.confidential.errors }}
+
+
+
+            <!-- SEND -->
+
+            <button type="submit"
+                    class="send-message-btn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Send Confidential Message
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SOCIAL MEDIA ================= -->
+
+<section class="social-section">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-share-nodes"></i>
+
+        <h2>Connect With Us</h2>
+
+    </div>
+
+
+    <p>
+        Follow Full Gospel Churches of Kenya - Njiru and stay connected
+        with our church community.
+    </p>
+
+
+    <div class="social-cards">
+
+
+        <!-- FACEBOOK -->
+
+        <a href="#"
+           class="social-card">
+
+            <i class="fa-brands fa-facebook"></i>
+
+            <h3>Facebook</h3>
+
+            <p>Fullgospell</p>
+
+        </a>
+
+
+
+        <!-- YOUTUBE -->
+
+        <a href="#"
+           class="social-card">
+
+            <i class="fa-brands fa-youtube"></i>
+
+            <h3>YouTube</h3>
+
+            <p>Full Gospell</p>
+
+        </a>
+
+
+
+        <!-- WHATSAPP -->
+
+        <a href="https://wa.me/254725807540"
+           target="_blank"
+           class="social-card">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <h3>WhatsApp</h3>
+
+            <p>Message Us Directly</p>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+
+        <div>
+
+            <i class="fa-solid fa-cross"></i>
+
+            <h3>Full Gospel Churches of Kenya - Njiru</h3>
+
+            <p>
+                House of Bread for All Nations
+            </p>
+
+            <p class="site-giving-details">
+                <i class="fa-solid fa-building-columns" aria-hidden="true"></i>
+                M-Pesa Paybill <strong>247247</strong>
+                <span>Account <strong>725807</strong></span>
+                <a href="{% url 'giving' %}">Giving details</a>
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <a href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                <i class="fa-solid fa-church"></i>
+                About
+            </a>
+
+            <a href="{% url 'sermons' %}">
+                <i class="fa-solid fa-book-bible"></i>
+                Sermons
+            </a>
+
+            <a href="{% url 'announcements' %}">
+                <i class="fa-solid fa-bullhorn"></i>
+                Announcements
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>Contact</h4>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                0725807540
+            </p>
+
+            <p>
+                <i class="fa-solid fa-lock"></i>
+                Private Prayer Requests
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Full Gospel Churches of Kenya - Njiru.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

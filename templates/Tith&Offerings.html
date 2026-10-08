@@ -1,0 +1,488 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tithes & Offerings | Full Gospel Churches of Kenya - Njiru</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+        <link rel="stylesheet"
+            href="{% static 'css/giving.css' %}">
+        <script src="{% static 'js/site-search.js' %}" defer></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body class="giving-page">
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-cross"></i>
+
+        <span>Full Gospel Churches of Kenya - Njiru</span>
+
+    </div>
+
+    <button class="site-menu-toggle" type="button" data-menu-toggle aria-controls="site-page-menu" aria-expanded="false" aria-label="Open site menu">
+        <i class="fa-solid fa-bars" data-menu-open-icon aria-hidden="true"></i>
+        <i class="fa-solid fa-xmark" data-menu-close-icon aria-hidden="true"></i>
+        <span data-menu-label>Menu</span>
+    </button>
+
+    <nav class="site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+
+        <a href="{% url 'home' %}">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="{% url 'about' %}">
+            <i class="fa-solid fa-church"></i>
+            About
+        </a>
+
+        <a href="{% url 'events' %}">
+            <i class="fa-solid fa-calendar-days"></i>
+            Events
+        </a>
+
+        <a href="{% url 'contact' %}">
+            <i class="fa-solid fa-phone"></i>
+            Contact
+        </a>
+
+        <a href="{% url 'sermons' %}">
+            <i class="fa-solid fa-book-bible"></i>
+            Sermons
+        </a>
+
+        <a href="{% url 'teachings' %}">
+            <i class="fa-solid fa-book-open"></i>
+            Teachings
+        </a>
+
+        <a href="{% url 'announcements' %}">
+            <i class="fa-solid fa-bullhorn"></i>
+            Announcements
+        </a>
+
+        <a href="{% url 'gallery' %}">
+            <i class="fa-solid fa-images"></i>
+            Gallery
+        </a>
+
+        <a href="{% url 'giving' %}" class="active">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            Tithes &amp; Offerings
+        </a>
+
+    </nav>
+
+    <form class="site-search" role="search" data-page-search>
+        <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">
+        <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+        <span class="site-search-status" aria-live="polite"></span>
+    </form>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="giving-hero">
+
+    <div class="giving-hero-content">
+
+        <i class="fa-solid fa-hand-holding-heart"></i>
+
+        <h1>Tithes & Offerings</h1>
+
+        <p>
+            Give faithfully and support the work of God's Kingdom.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= INTRODUCTION ================= -->
+
+<section class="giving-intro">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <h2>Give With a Willing Heart</h2>
+
+    </div>
+
+    <p>
+        Your tithes and offerings help support the ministry,
+        church activities, outreach and the work of spreading
+        the Word of God.
+    </p>
+
+    <p>
+        <strong>
+            "God loves a cheerful giver."
+        </strong>
+        — 2 Corinthians 9:7
+    </p>
+
+</section>
+
+
+
+<!-- ================= PAYMENT CARD ================= -->
+
+<section class="giving-section">
+
+    <div class="giving-card">
+
+        <div class="giving-card-icon">
+
+            <i class="fa-solid fa-mobile-screen-button"></i>
+
+        </div>
+
+
+        <h2>Give Through M-Pesa</h2>
+
+        <p class="giving-description">
+
+            You can send your tithe or offering through
+            the church's M-Pesa Paybill.
+
+        </p>
+
+
+
+        <!-- PAYBILL -->
+
+        <div class="payment-detail">
+
+            <span>
+                <i class="fa-solid fa-building-columns"></i>
+                Paybill Number
+            </span>
+
+            <strong>
+                247247
+            </strong>
+
+        </div>
+
+
+
+        <!-- ACCOUNT -->
+
+        <div class="payment-detail">
+
+            <span>
+                <i class="fa-solid fa-hashtag"></i>
+                Account Number
+            </span>
+
+            <strong>
+                725807
+            </strong>
+
+        </div>
+
+
+
+        <!-- NAME -->
+
+        <div class="payment-detail">
+
+            <span>
+                <i class="fa-solid fa-church"></i>
+                Account Name
+            </span>
+
+            <strong>
+                Full Gospel Churches of Kenya - Njiru
+            </strong>
+
+        </div>
+
+
+
+        <!-- INSTRUCTIONS -->
+
+        <div class="giving-instructions">
+
+            <h3>
+
+                <i class="fa-solid fa-list-ol"></i>
+
+                How to Give
+
+            </h3>
+
+            <ol>
+
+                <li>
+                    Open M-Pesa on your phone.
+                </li>
+
+                <li>
+                    Select <strong>Lipa na M-Pesa</strong>.
+                </li>
+
+                <li>
+                    Select <strong>Paybill</strong>.
+                </li>
+
+                <li>
+                    Enter the church Paybill number:
+                    <strong>247247</strong>.
+                </li>
+
+                <li>
+                    Enter the account number:
+                    <strong>725807</strong>.
+                </li>
+
+                <li>
+                    Enter the amount you wish to give.
+                </li>
+
+                <li>
+                    Confirm the church name before completing
+                    the transaction.
+                </li>
+
+            </ol>
+
+        </div>
+
+
+
+        <!-- CONFIRMATION -->
+
+        <div class="giving-warning">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <p>
+                Before confirming your payment, make sure the
+                displayed account name is
+                <strong>Full Gospel Churches of Kenya - Njiru</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= TYPES OF GIVING ================= -->
+
+<section class="giving-types">
+
+    <div class="section-title">
+
+        <i class="fa-solid fa-hand-holding-heart"></i>
+
+        <h2>Ways You Can Give</h2>
+
+    </div>
+
+
+    <div class="giving-grid">
+
+
+        <!-- TITHE -->
+
+        <div class="giving-type-card">
+
+            <div class="giving-type-icon">
+
+                <i class="fa-solid fa-coins"></i>
+
+            </div>
+
+            <h3>Tithe</h3>
+
+            <p>
+                Give your tithe as an act of obedience,
+                gratitude and worship to God.
+            </p>
+
+        </div>
+
+
+
+        <!-- OFFERING -->
+
+        <div class="giving-type-card">
+
+            <div class="giving-type-icon">
+
+                <i class="fa-solid fa-gift"></i>
+
+            </div>
+
+            <h3>Offering</h3>
+
+            <p>
+                Give freely and cheerfully as you support
+                the work and ministry of the church.
+            </p>
+
+        </div>
+
+
+
+        <!-- SPECIAL GIVING -->
+
+        <div class="giving-type-card">
+
+            <div class="giving-type-icon">
+
+                <i class="fa-solid fa-hands-praying"></i>
+
+            </div>
+
+            <h3>Special Giving</h3>
+
+            <p>
+                Support special church projects,
+                outreach and ministry activities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PRIVACY / SECURITY ================= -->
+
+<section class="giving-note">
+
+    <div>
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h2>Give Securely</h2>
+
+        <p>
+            Always verify the church name and payment details
+            displayed by M-Pesa before confirming your transaction.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+
+        <div>
+
+            <i class="fa-solid fa-cross"></i>
+
+            <h3>Full Gospel Churches of Kenya - Njiru</h3>
+
+            <p>
+                House of Bread for All Nations
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <a href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                <i class="fa-solid fa-church"></i>
+                About
+            </a>
+
+            <a href="{% url 'sermons' %}">
+                <i class="fa-solid fa-book-bible"></i>
+                Sermons
+            </a>
+
+            <a href="{% url 'contact' %}">
+                <i class="fa-solid fa-phone"></i>
+                Contact
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h4>Tithes &amp; Offerings</h4>
+
+            <p>
+                <i class="fa-solid fa-building-columns"></i>
+                Paybill: 247247
+            </p>
+
+            <p>
+                <i class="fa-solid fa-hashtag"></i>
+                Account: 725807
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Full Gospel Churches of Kenya - Njiru.
+            All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
