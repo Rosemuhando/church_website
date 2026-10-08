@@ -53,7 +53,7 @@ class SermonAccessTests(TestCase):
 
         response = self.client.post(reverse('sermons'), {
             'title': 'Walking in Faith',
-            'preacher': 'Pastor Antony',
+            'preacher': 'Pastor Anthony',
             'bible_verse': 'Hebrews 11:1',
             'content': 'Trust God in every season.',
         })
