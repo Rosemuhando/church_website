@@ -1,0 +1,252 @@
+
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Church Management | Full Gospel Churches of Kenya - Njiru{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        FULL GOSPEL CHURCHES OF KENYA
+        <span class="church-subtitle">
+            NJIRU · CHURCH MANAGEMENT
+        </span>
+    </a>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    :root {
+        --church-blue-dark: #173B8F;
+        --church-blue: #2455C3;
+        --church-blue-light: #EAF2FF;
+        --church-purple-dark: #5B2C91;
+        --church-purple: #7042C2;
+        --church-purple-light: #F2ECFF;
+        --church-white: #FFFFFF;
+    }
+
+    body,
+    #container {
+        background: var(--church-white);
+    }
+
+    #header {
+        background: linear-gradient(
+            120deg,
+            var(--church-blue-dark),
+            var(--church-purple)
+        );
+        color: var(--church-white);
+        padding: 22px 30px;
+        box-shadow: 0 4px 14px rgba(36, 85, 195, 0.18);
+    }
+
+    #branding #site-name a {
+        color: var(--church-white);
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        line-height: 1.5;
+        text-decoration: none;
+    }
+
+    #branding #site-name a:hover {
+        color: var(--church-purple-light);
+    }
+
+    .church-subtitle {
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 5px;
+    }
+
+    #user-tools {
+        color: var(--church-white);
+        font-size: 13px;
+        line-height: 2;
+    }
+
+    #user-tools a {
+        color: var(--church-white);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    #user-tools a:hover {
+        color: var(--church-purple-light);
+    }
+
+    #nav-sidebar {
+        background: var(--church-blue-light);
+        border-right: 3px solid var(--church-purple);
+    }
+
+    #nav-sidebar .current-model,
+    #nav-sidebar .current-app .section:link {
+        background: var(--church-purple-light);
+    }
+
+    #nav-sidebar a {
+        color: var(--church-blue-dark);
+    }
+
+    #nav-sidebar a:hover {
+        color: var(--church-purple-dark);
+        background: var(--church-white);
+    }
+
+    #content {
+        padding: 28px 32px;
+        background: var(--church-white);
+    }
+
+    #content h1 {
+        color: var(--church-blue-dark);
+        font-weight: 700;
+        margin-bottom: 24px;
+    }
+
+    #content h2,
+    #content h3 {
+        color: var(--church-purple-dark);
+    }
+
+    .module {
+        border: 1px solid var(--church-blue-light);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--church-white);
+        box-shadow: 0 3px 12px rgba(36, 85, 195, 0.08);
+        margin-bottom: 24px;
+    }
+
+    .module caption,
+    .module h2,
+    .module h3 {
+        background: var(--church-blue-light);
+        color: var(--church-blue-dark);
+        padding: 14px 18px;
+        font-weight: 700;
+    }
+
+    .module caption a,
+    .module h2 a,
+    .module h3 a {
+        color: var(--church-blue-dark);
+    }
+
+    #content a:link,
+    #content a:visited {
+        color: var(--church-blue);
+    }
+
+    #content a:hover {
+        color: var(--church-purple-dark);
+    }
+
+    .button,
+    input[type="submit"],
+    input[type="button"],
+    .submit-row input,
+    a.button {
+        background: var(--church-blue) !important;
+        color: var(--church-white) !important;
+        border: 1px solid var(--church-blue);
+        border-radius: 7px;
+        padding: 9px 15px;
+        font-weight: 600;
+    }
+
+    .button:hover,
+    input[type="submit"]:hover,
+    input[type="button"]:hover,
+    .submit-row input:hover,
+    a.button:hover {
+        background: var(--church-purple) !important;
+        border-color: var(--church-purple);
+    }
+
+    .addlink,
+    .changelink {
+        font-weight: 600;
+    }
+
+    .breadcrumbs {
+        background: var(--church-purple-light);
+        border-bottom: 1px solid var(--church-purple);
+        padding: 13px 30px;
+        color: var(--church-blue-dark);
+    }
+
+    .breadcrumbs a {
+        color: var(--church-blue) !important;
+    }
+
+    input,
+    select,
+    textarea {
+        border-radius: 6px;
+        border: 1px solid #B8C9F0;
+        background: var(--church-white);
+        color: var(--church-blue-dark);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--church-purple) !important;
+        outline: 2px solid var(--church-purple-light);
+    }
+
+    #changelist-filter {
+        border: 1px solid var(--church-blue-light);
+        border-radius: 10px;
+        background: var(--church-white);
+        padding-bottom: 12px;
+    }
+
+    #changelist-filter h2 {
+        background: var(--church-purple-light);
+        color: var(--church-purple-dark);
+        padding: 13px;
+    }
+
+    #changelist-filter a {
+        color: var(--church-blue);
+    }
+
+    .object-tools a {
+        background: var(--church-purple) !important;
+        color: var(--church-white) !important;
+        border-radius: 7px;
+    }
+
+    .object-tools a:hover {
+        background: var(--church-blue) !important;
+    }
+
+    #footer {
+        background: var(--church-white);
+        color: var(--church-blue-dark);
+        padding: 20px;
+    }
+
+    @media (max-width: 767px) {
+        #header {
+            padding: 16px;
+        }
+
+        #content {
+            padding: 18px 12px;
+        }
+
+        #branding #site-name a {
+            font-size: 15px;
+        }
+    }
+</style>
+{% endblock %}
