@@ -18,10 +18,12 @@ For local environment variables, copy `.env.example` to `.env` and set your valu
 
 ## Deploy to Render with Neon
 
-Create a Render **Web Service** from this repository and configure:
+Create a Render **Blueprint** from this repository using `render.yaml`, or set up a Web Service manually with:
 
 - **Build command:** `bash build.sh`
-- **Start command:** `gunicorn config.wsgi:application --workers ${WEB_CONCURRENCY:-2} --threads ${GUNICORN_THREADS:-4}`
+- **Start command:** `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers ${WEB_CONCURRENCY:-1} --threads ${GUNICORN_THREADS:-4}`
+
+The Render build command is required: it installs dependencies, runs database migrations, and collects static files. If Render logs `No directory at .../staticfiles/`, verify the service's **Build Command** is `bash build.sh`, save the settings, then trigger a fresh deploy. A successful start message alone does not confirm the pages are serving successfully.
 
 In the Render service's environment settings, add:
 
