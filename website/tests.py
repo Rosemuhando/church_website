@@ -1,7 +1,13 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.core import mail
+from django.core.exceptions import PermissionDenied
 from django.test import TestCase, override_settings
 from django.urls import reverse
+
+from website.models import Announcement, StaffAdminRequest
+from website.permissions import CONTENT_ADMIN_GROUP, is_content_admin
+from website.services import review_staff_admin_request
 
 
 class SiteAuthenticationTests(TestCase):
@@ -29,6 +35,35 @@ class SiteAuthenticationTests(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertIn('/admin/login/', response.headers['Location'])
+
+    def test_only_staff_can_open_admin(self):
+        response = self.client.get(reverse('admin:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/admin/login/', response.headers['Location'])
+
+        member = get_user_model().objects.create_user(
+            username='admin-page-member',
+            password='Member-test-password-975!',
+        )
+        self.client.force_login(member)
+        response = self.client.get(reverse('admin:index'))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/admin/login/', response.headers['Location'])
+
+        admin_user = get_user_model().objects.create_superuser(
+            username='admin-page-superuser',
+            email='admin-page@example.com',
+            password='Admin-test-password-975!',
+        )
+        self.client.force_login(admin_user)
+        response = self.client.get(reverse('admin:index'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_public_sign_in_page_does_not_advertise_admin_login(self):
+        response = self.client.get(reverse('login'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'Sign in to Admin')
 
     def test_member_pages_require_sign_in_and_return_to_requested_page(self):
         page_names = ('gallery', 'teachings', 'sermons', 'announcements')
@@ -62,6 +97,134 @@ class SiteAuthenticationTests(TestCase):
 
         self.assertRedirects(response, reverse('login'))
 
+    def test_member_sermon_page_does_not_advertise_admin_login(self):
+        member = get_user_model().objects.create_user(
+            username='sermon-page-member',
+            password='Member-test-password-975!',
+        )
+        self.client.force_login(member)
+
+        response = self.client.get(reverse('sermons'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'Authorized staff sign in')
+
+    def test_member_can_request_content_admin_access(self):
+        member = get_user_model().objects.create_user(
+            username='admin-applicant',
+            password='Member-test-password-975!',
+        )
+        self.client.force_login(member)
+
+        response = self.client.post(reverse('request_content_admin'))
+
+        self.assertRedirects(response, reverse('user_dashboard'))
+        admin_request = StaffAdminRequest.objects.get(user=member)
+        self.assertEqual(admin_request.status, StaffAdminRequest.Status.PENDING)
+        self.assertFalse(is_content_admin(member))
+
+    def test_only_superuser_can_approve_content_admin_request(self):
+        member = get_user_model().objects.create_user(
+            username='admin-applicant',
+            password='Member-test-password-975!',
+        )
+        admin_request = StaffAdminRequest.objects.create(user=member)
+        ordinary_user = get_user_model().objects.create_user(
+            username='ordinary-reviewer',
+            password='Member-test-password-975!',
+        )
+
+        with self.assertRaises(PermissionDenied):
+            review_staff_admin_request(admin_request, ordinary_user, approved=True)
+
+        superuser = get_user_model().objects.create_superuser(
+            username='request-approver',
+            email='approver@example.com',
+            password='Admin-test-password-975!',
+        )
+        review_staff_admin_request(admin_request, superuser, approved=True)
+        member.refresh_from_db()
+        admin_request.refresh_from_db()
+
+        self.assertTrue(is_content_admin(member))
+        self.assertFalse(member.is_staff)
+        self.assertEqual(admin_request.status, StaffAdminRequest.Status.APPROVED)
+        self.assertEqual(admin_request.reviewed_by, superuser)
+
+        review_staff_admin_request(admin_request, superuser, approved=False)
+        member.refresh_from_db()
+        self.assertFalse(is_content_admin(member))
+        self.assertEqual(admin_request.status, StaffAdminRequest.Status.REJECTED)
+
+    def test_approved_content_admin_gets_separate_limited_panel(self):
+        content_admin = get_user_model().objects.create_user(
+            username='content-admin',
+            password='Admin-test-password-975!',
+        )
+        content_admin.groups.add(
+            Group.objects.create(name=CONTENT_ADMIN_GROUP),
+        )
+        self.client.force_login(content_admin)
+
+        response = self.client.post(reverse('login'), {
+            'username': content_admin.username,
+            'password': 'Admin-test-password-975!',
+        })
+        self.assertRedirects(response, reverse('staff_panel'))
+
+        panel = self.client.get(reverse('staff_panel'))
+        self.assertEqual(panel.status_code, 200)
+        self.assertContains(panel, 'Post an announcement')
+        self.assertContains(panel, 'Update a pastor’s photo')
+
+        admin_page = self.client.get(reverse('admin:index'))
+        self.assertEqual(admin_page.status_code, 302)
+        self.assertIn('/admin/login/', admin_page.headers['Location'])
+
+        response = self.client.post(reverse('staff_panel'), {
+            'action': 'announcement',
+            'title': 'Service update',
+            'content': 'Sunday service begins at 9 AM.',
+            'event_date': '',
+        })
+        self.assertRedirects(response, reverse('staff_panel'))
+        self.assertTrue(Announcement.objects.filter(title='Service update').exists())
+
+    def test_staff_panel_has_mobile_friendly_photo_and_video_inputs(self):
+        content_admin = get_user_model().objects.create_user(
+            username='media-content-admin',
+            password='Admin-test-password-975!',
+        )
+        content_admin.groups.add(
+            Group.objects.create(name=CONTENT_ADMIN_GROUP),
+        )
+        self.client.force_login(content_admin)
+
+        response = self.client.get(reverse('staff_panel'))
+
+        self.assertContains(response, 'accept="image/*"')
+        self.assertContains(response, 'accept="video/*"')
+
+    def test_regular_member_cannot_open_content_admin_panel(self):
+        member = get_user_model().objects.create_user(
+            username='panel-member',
+            password='Member-test-password-975!',
+        )
+        self.client.force_login(member)
+
+        response = self.client.get(reverse('staff_panel'))
+
+        self.assertEqual(response.status_code, 403)
+
+    def test_about_page_shows_editable_pastor_profiles(self):
+        response = self.client.get(reverse('about'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Reverend Anthony')
+        self.assertContains(response, 'Pastor Judy')
+        self.assertContains(response, 'Pastor Michael')
+        self.assertContains(response, 'serving the congregation with faith')
+
     def test_registration_creates_regular_user_and_starts_session(self):
         response = self.client.post(reverse('register'), {
             'username': 'new-member',
@@ -88,7 +251,11 @@ class SiteAuthenticationTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(get_user_model().objects.filter(username='new-member').exists())
 
-    @override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend')
+    @override_settings(MAILERS={
+        'default': {
+            'BACKEND': 'django.core.mail.backends.locmem.EmailBackend',
+        },
+    })
     def test_password_reset_email_changes_the_password(self):
         user = get_user_model().objects.create_user(
             username='member',
@@ -133,7 +300,7 @@ class SiteAuthenticationTests(TestCase):
         self.assertRedirects(response, reverse('user_dashboard'))
         self.assertEqual(self.client.session['_auth_user_id'], str(user.pk))
 
-    def test_staff_user_signs_in_to_admin(self):
+    def test_unapproved_staff_flag_does_not_grant_content_admin_access(self):
         staff_user = get_user_model().objects.create_user(
             username='administrator',
             password='test-password',
@@ -142,6 +309,20 @@ class SiteAuthenticationTests(TestCase):
 
         response = self.client.post(reverse('login'), {
             'username': staff_user.username,
+            'password': 'test-password',
+        })
+
+        self.assertRedirects(response, reverse('user_dashboard'))
+
+    def test_superuser_signs_in_to_superadmin_site(self):
+        superuser = get_user_model().objects.create_superuser(
+            username='superadministrator',
+            email='superadministrator@example.com',
+            password='test-password',
+        )
+
+        response = self.client.post(reverse('login'), {
+            'username': superuser.username,
             'password': 'test-password',
         })
 

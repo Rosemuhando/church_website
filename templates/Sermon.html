@@ -295,11 +295,7 @@
 {% else %}
 <section class="sermon-access-section">
     <p><i class="fa-solid fa-lock" aria-hidden="true"></i> Adding sermons is limited to authorized church staff.</p>
-    {% if not user.is_authenticated %}
-    <a href="{% url 'admin:login' %}?next={% url 'sermons' %}">Authorized staff sign in</a>
-    {% else %}
     <p>Ask an administrator to enable staff access and grant you the Sermons add permission.</p>
-    {% endif %}
 </section>
 {% endif %}
 

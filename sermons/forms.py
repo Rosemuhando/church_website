@@ -13,6 +13,6 @@ class SermonForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date'}),
             'bible_verse': forms.TextInput(attrs={'placeholder': 'Example: John 3:16'}),
             'content': forms.Textarea(attrs={'rows': 10, 'placeholder': 'Write the sermon here...'}),
-            'video': forms.FileInput(attrs={'accept': 'video/*'}),
+            'video': forms.ClearableFileInput(attrs={'accept': 'video/*'}),
             'video_url': forms.URLInput(attrs={'placeholder': 'YouTube or other video link'}),
         }

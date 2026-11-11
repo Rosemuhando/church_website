@@ -9,8 +9,12 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load local development settings without overriding environment variables.
+load_dotenv(BASE_DIR / '.env')
 
 # Security settings
 SECRET_KEY = os.environ.get(
@@ -18,7 +22,10 @@ SECRET_KEY = os.environ.get(
     'django-insecure-local-development-only'
 )
 
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
+DEBUG = os.environ.get(
+    'DJANGO_DEBUG',
+    'false' if os.environ.get('RENDER') else 'true',
+).lower() == 'true'
 
 ALLOWED_HOSTS = [
     host.strip()
@@ -28,6 +35,9 @@ ALLOWED_HOSTS = [
     ).split(',')
     if host.strip()
 ]
+render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if render_hostname and render_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_hostname)
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
@@ -37,6 +47,8 @@ CSRF_TRUSTED_ORIGINS = [
     ).split(',')
     if origin.strip()
 ]
+if render_hostname:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{render_hostname}')
 
 if not DEBUG and SECRET_KEY == 'django-insecure-local-development-only':
     raise ValueError('Set a secure DJANGO_SECRET_KEY for production.')
@@ -49,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
     'website',
     'contact',
     'sermons',
@@ -97,12 +110,21 @@ if DATABASE_URL:
         )
     }
 else:
+    if not DEBUG:
+        raise ValueError(
+            'Set DATABASE_URL to a persistent database for production.'
+        )
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+if os.environ.get('CLOUDINARY_URL'):
+    import cloudinary
+
+    cloudinary.config(secure=True)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -150,6 +172,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Production security
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = not DEBUG
+SECURE_HSTS_SECONDS = 31_536_000 if not DEBUG else 0
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
 
@@ -158,12 +181,25 @@ DEFAULT_FROM_EMAIL = os.environ.get(
     'DJANGO_DEFAULT_FROM_EMAIL',
     'webmaster@localhost'
 )
-
 MAILERS = {
     'default': {
         'BACKEND': os.environ.get(
             'DJANGO_EMAIL_BACKEND',
-            'django.core.mail.backends.console.EmailBackend',
+            (
+                'django.core.mail.backends.console.EmailBackend'
+                if DEBUG
+                else 'django.core.mail.backends.smtp.EmailBackend'
+            ),
         ),
+        'OPTIONS': {
+            'host': os.environ.get('DJANGO_EMAIL_HOST', 'localhost'),
+            'port': int(os.environ.get('DJANGO_EMAIL_PORT', '587')),
+            'username': os.environ.get('DJANGO_EMAIL_HOST_USER', ''),
+            'password': os.environ.get('DJANGO_EMAIL_HOST_PASSWORD', ''),
+            'use_tls': os.environ.get(
+                'DJANGO_EMAIL_USE_TLS',
+                'true',
+            ).lower() == 'true',
+        },
     },
 }

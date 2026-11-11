@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Admin | Full Gospel Churches of Kenya - Njiru</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/staff-panel.css' %}">
+</head>
+<body class="auth-page">
+    <header class="navbar auth-navbar">
+        <a class="logo" href="{% url 'home' %}">
+            <span class="brand-copy">
+                <strong class="brand-name">Full Gospel Churches of Kenya - Njiru</strong>
+                <small class="brand-tagline">Content Admin Panel</small>
+            </span>
+        </a>
+        <form method="post" action="{% url 'logout' %}" class="auth-logout-form">
+            {% csrf_token %}
+            <button class="auth-home-link" type="submit">Sign out</button>
+        </form>
+    </header>
+
+    <main class="staff-panel-main">
+        <section class="staff-panel-heading">
+            <p class="auth-eyebrow">CHURCH CONTENT ADMIN</p>
+            <h1>Welcome, {{ user.get_short_name|default:user.username }}</h1>
+            <p>Post church updates and manage pastor portraits. User accounts and admin approvals are not available in this panel.</p>
+        </section>
+
+        {% if messages %}
+        <div class="staff-panel-messages" role="status">
+            {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+        </div>
+        {% endif %}
+
+        {% if not media_uploads_enabled %}
+        <p class="staff-panel-notice">Photo and video uploads need a Cloudinary account. Add its private <code>CLOUDINARY_URL</code> value to Render’s Environment settings to enable media uploads.</p>
+        {% endif %}
+
+        <div class="staff-panel-grid">
+            <section class="staff-panel-card">
+                <h2>Post an announcement</h2>
+                <form method="post" class="auth-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="announcement">
+                    {{ announcement_form.as_p }}
+                    <button class="auth-submit" type="submit">Publish announcement</button>
+                </form>
+            </section>
+
+            <section class="staff-panel-card">
+                <h2>Add a church photo</h2>
+                <form method="post" enctype="multipart/form-data" class="auth-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="photo">
+                    {{ photo_form.as_p }}
+                    <button class="auth-submit" type="submit">Upload photo</button>
+                </form>
+            </section>
+
+            <section class="staff-panel-card">
+                <h2>Post a teaching or sermon</h2>
+                <form method="post" enctype="multipart/form-data" class="auth-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="teaching">
+                    {{ teaching_form.as_p }}
+                    <button class="auth-submit" type="submit">Publish teaching</button>
+                </form>
+            </section>
+
+            <section class="staff-panel-card">
+                <h2>Update a pastor’s photo</h2>
+                {% for pastor in pastor_profiles %}
+                <form method="post" enctype="multipart/form-data" class="auth-form pastor-photo-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="pastor-photo">
+                    <input type="hidden" name="profile_id" value="{{ pastor.pk }}">
+                    <p><strong>{{ pastor.title }} {{ pastor.name }}</strong></p>
+                    {{ pastor_photo_form.errors }}
+                    {{ pastor_photo_form.photo }}
+                    <button class="auth-submit" type="submit">Update photo</button>
+                </form>
+                {% empty %}
+                <p>No pastor profiles are available.</p>
+                {% endfor %}
+            </section>
+        </div>
+
+        <section class="staff-panel-card staff-panel-recent">
+            <h2>Recent content</h2>
+            <div class="staff-panel-recent-grid">
+                <div>
+                    <h3>Announcements</h3>
+                    <ul>{% for item in recent_announcements %}<li>{{ item.title }} <time>{{ item.date }}</time></li>{% empty %}<li>No announcements yet.</li>{% endfor %}</ul>
+                </div>
+                <div>
+                    <h3>Photos</h3>
+                    <ul>{% for item in recent_photos %}<li>{{ item.title }}</li>{% empty %}<li>No photos yet.</li>{% endfor %}</ul>
+                </div>
+                <div>
+                    <h3>Teachings</h3>
+                    <ul>{% for item in recent_teachings %}<li>{{ item.title }}</li>{% empty %}<li>No teachings yet.</li>{% endfor %}</ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

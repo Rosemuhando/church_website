@@ -257,6 +257,22 @@ body.auth-page {
     text-align: center;
 }
 
+.admin-request-section {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid #e6e9f2;
+}
+
+.admin-request-section h2 {
+    margin: 0;
+    color: #173b8f;
+    font-size: 1.15rem;
+}
+
+.admin-request-section p {
+    color: #626b80;
+}
+
 @media (max-width: 600px) {
     .auth-navbar {
         width: calc(100% - 28px);

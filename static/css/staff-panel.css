@@ -1,0 +1,106 @@
+.staff-panel-main {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 38px 0 64px;
+}
+
+.staff-panel-heading {
+    margin-bottom: 24px;
+}
+
+.staff-panel-heading h1 {
+    margin: 0;
+    color: #173b8f;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.staff-panel-heading > p:last-child {
+    color: #626b80;
+}
+
+.staff-panel-grid,
+.staff-panel-recent-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.staff-panel-card {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid #d8def0;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(32, 40, 68, 0.06);
+}
+
+.staff-panel-card h2,
+.staff-panel-card h3 {
+    margin-top: 0;
+    color: #173b8f;
+}
+
+.staff-panel-card .auth-form p {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+}
+
+.staff-panel-card input:not([type="hidden"]),
+.staff-panel-card textarea,
+.staff-panel-card select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 11px;
+    border: 1px solid #d5dcef;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.staff-panel-card input[type="file"] {
+    min-height: auto;
+    padding: 8px;
+}
+
+.staff-panel-notice,
+.staff-panel-messages {
+    margin: 0 0 20px;
+    padding: 12px 16px;
+    border-left: 4px solid #5b2c91;
+    color: #34234e;
+    background: #f4eeff;
+}
+
+.staff-panel-messages p {
+    margin: 0;
+}
+
+.staff-panel-recent {
+    margin-top: 20px;
+}
+
+.staff-panel-recent-grid ul {
+    padding-left: 20px;
+}
+
+.staff-panel-recent-grid time {
+    display: block;
+    color: #626b80;
+    font-size: 0.85rem;
+}
+
+.pastor-photo-form {
+    padding: 14px 0;
+    border-top: 1px solid #e6e9f2;
+}
+
+@media (max-width: 700px) {
+    .staff-panel-grid,
+    .staff-panel-recent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-panel-card {
+        padding: 18px;
+    }
+}

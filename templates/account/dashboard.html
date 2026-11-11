@@ -37,6 +37,24 @@
                 <a href="{% url 'gallery' %}"><i class="fa-solid fa-images" aria-hidden="true"></i> Church gallery</a>
                 <a href="{% url 'contact' %}"><i class="fa-solid fa-phone" aria-hidden="true"></i> Contact the church</a>
             </div>
+            <section class="admin-request-section" aria-labelledby="admin-request-heading">
+                <h2 id="admin-request-heading">Church content admin access</h2>
+                {% if admin_request.status == 'pending' %}
+                <p>Your request is waiting for superadmin approval.</p>
+                {% elif admin_request.status == 'rejected' %}
+                <p>Your previous request was not approved. You may submit a new request.</p>
+                <form method="post" action="{% url 'request_content_admin' %}">
+                    {% csrf_token %}
+                    <button class="auth-submit" type="submit">Request access again</button>
+                </form>
+                {% else %}
+                <p>Request approval to post announcements, teachings and church photos.</p>
+                <form method="post" action="{% url 'request_content_admin' %}">
+                    {% csrf_token %}
+                    <button class="auth-submit" type="submit">Request content admin access</button>
+                </form>
+                {% endif %}
+            </section>
         </section>
     </main>
 </body>

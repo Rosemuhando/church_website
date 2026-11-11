@@ -219,54 +219,25 @@
 
 
         <div class="pastors-container">
-
-            <div class="pastor-card">
-
+            {% for pastor in pastor_profiles %}
+            <article class="pastor-card">
                 <div class="pastor-image">
+                    {% if pastor.photo %}
+                    <img src="{{ pastor.photo.url }}" alt="Photo of {{ pastor.name }}" loading="lazy">
+                    {% else %}
                     <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
-                    <span>PASTOR</span>
+                    <span>{{ pastor.title }}</span>
+                    {% endif %}
                 </div>
-
                 <div class="pastor-info">
-
-                    <p class="pastor-title">REVEREND</p>
-
-                    <h3>Reverend Anthony</h3>
-
-                    <p>
-                        Pastor Anthony serves as a spiritual leader
-                        of Full Gospel Churches of Kenya - Njiru, guiding the congregation
-                        through God's Word and prayer.
-                    </p>
-
+                    <p class="pastor-title">{{ pastor.title|upper }}</p>
+                    <h3>{{ pastor.name }}</h3>
+                    <p>{{ pastor.biography }}</p>
                 </div>
-
-            </div>
-
-
-            <div class="pastor-card">
-
-                <div class="pastor-image">
-                    <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
-                    <span>PASTOR</span>
-                </div>
-
-                <div class="pastor-info">
-
-                    <p class="pastor-title">PASTOR</p>
-
-                    <h3>Pastor Judy</h3>
-
-                    <p>
-                        Pastor Judy serves alongside the church leadership,
-                        supporting the congregation and ministry with
-                        love, wisdom and dedication.
-                    </p>
-
-                </div>
-
-            </div>
-
+            </article>
+            {% empty %}
+            <p>Pastor profiles will be added soon.</p>
+            {% endfor %}
         </div>
 
     </section>
