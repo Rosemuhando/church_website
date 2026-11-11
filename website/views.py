@@ -17,6 +17,7 @@ from .forms import (
     GalleryPhotoForm,
     MemberCreationForm,
     PastorPhotoForm,
+    PastorProfileForm,
 )
 from .models import Announcement, GalleryPhoto, PastorProfile, StaffAdminRequest
 from .permissions import is_content_admin
@@ -102,6 +103,7 @@ def staff_panel(request):
         'photo': GalleryPhotoForm(),
         'teaching': SermonForm(),
         'pastor_photo': PastorPhotoForm(),
+        'pastor_profile': PastorProfileForm(),
     }
 
     if request.method == 'POST':
@@ -124,12 +126,25 @@ def staff_panel(request):
             )
             if not request.FILES.get('photo'):
                 form.add_error('photo', 'Choose a photo to upload.')
+        elif action == 'pastor-profile':
+            profile_id = request.POST.get('profile_id')
+            profile = (
+                get_object_or_404(PastorProfile, pk=profile_id)
+                if profile_id
+                else None
+            )
+            form = PastorProfileForm(
+                request.POST,
+                request.FILES,
+                instance=profile,
+            )
         else:
             raise PermissionDenied('Unknown content action.')
 
         form_key = 'pastor_photo' if action == 'pastor-photo' else action
-        if action in ('photo', 'teaching', 'pastor-photo'):
-            if not os.environ.get('CLOUDINARY_URL'):
+        if action in ('photo', 'teaching', 'pastor-photo', 'pastor-profile'):
+            upload_requested = bool(request.FILES)
+            if upload_requested and not os.environ.get('CLOUDINARY_URL'):
                 messages.error(
                     request,
                     'Media uploads are not configured. Set CLOUDINARY_URL in Render first.',
@@ -153,7 +168,14 @@ def staff_panel(request):
         'photo_form': forms['photo'],
         'teaching_form': forms['teaching'],
         'pastor_photo_form': forms['pastor_photo'],
-        'pastor_profiles': PastorProfile.objects.all(),
+        'pastor_profile_form': forms['pastor_profile'],
+        'pastor_profiles': [
+            {
+                'profile': profile,
+                'form': PastorProfileForm(instance=profile),
+            }
+            for profile in PastorProfile.objects.all()
+        ],
         'recent_announcements': Announcement.objects.all()[:5],
         'recent_photos': GalleryPhoto.objects.all()[:5],
         'recent_teachings': Sermon.objects.all()[:5],

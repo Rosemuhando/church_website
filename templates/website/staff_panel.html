@@ -27,7 +27,7 @@
         <section class="staff-panel-heading">
             <p class="auth-eyebrow">CHURCH CONTENT ADMIN</p>
             <h1>Welcome, {{ user.get_short_name|default:user.username }}</h1>
-            <p>Post church updates and manage pastor portraits. User accounts and admin approvals are not available in this panel.</p>
+            <p>Post church updates and manage pastor cards. User accounts and admin approvals are not available in this panel.</p>
         </section>
 
         {% if messages %}
@@ -71,17 +71,23 @@
                 </form>
             </section>
 
-            <section class="staff-panel-card">
-                <h2>Update a pastor’s photo</h2>
-                {% for pastor in pastor_profiles %}
+            <section class="staff-panel-card staff-panel-pastors">
+                <h2>Add a pastor or update a pastor card</h2>
+                <p>Add a pastor, or change an existing pastor’s name, title, description, photo, and card order.</p>
+                <form method="post" enctype="multipart/form-data" class="auth-form pastor-profile-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="pastor-profile">
+                    {{ pastor_profile_form.as_p }}
+                    <button class="auth-submit" type="submit">Add pastor card</button>
+                </form>
+                <h3>Existing pastor cards</h3>
+                {% for item in pastor_profiles %}
                 <form method="post" enctype="multipart/form-data" class="auth-form pastor-photo-form">
                     {% csrf_token %}
-                    <input type="hidden" name="action" value="pastor-photo">
-                    <input type="hidden" name="profile_id" value="{{ pastor.pk }}">
-                    <p><strong>{{ pastor.title }} {{ pastor.name }}</strong></p>
-                    {{ pastor_photo_form.errors }}
-                    {{ pastor_photo_form.photo }}
-                    <button class="auth-submit" type="submit">Update photo</button>
+                    <input type="hidden" name="action" value="pastor-profile">
+                    <input type="hidden" name="profile_id" value="{{ item.profile.pk }}">
+                    {{ item.form.as_p }}
+                    <button class="auth-submit" type="submit">Save pastor card</button>
                 </form>
                 {% empty %}
                 <p>No pastor profiles are available.</p>

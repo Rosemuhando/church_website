@@ -5,7 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from website.models import Announcement, StaffAdminRequest
+from website.models import Announcement, PastorProfile, StaffAdminRequest
 from website.permissions import CONTENT_ADMIN_GROUP, is_content_admin
 from website.services import review_staff_admin_request
 
@@ -175,7 +175,7 @@ class SiteAuthenticationTests(TestCase):
         panel = self.client.get(reverse('staff_panel'))
         self.assertEqual(panel.status_code, 200)
         self.assertContains(panel, 'Post an announcement')
-        self.assertContains(panel, 'Update a pastor’s photo')
+        self.assertContains(panel, 'Add a pastor or update a pastor card')
 
         admin_page = self.client.get(reverse('admin:index'))
         self.assertEqual(admin_page.status_code, 302)
@@ -189,6 +189,40 @@ class SiteAuthenticationTests(TestCase):
         })
         self.assertRedirects(response, reverse('staff_panel'))
         self.assertTrue(Announcement.objects.filter(title='Service update').exists())
+
+    def test_content_admin_can_add_and_edit_pastor_cards(self):
+        content_admin = get_user_model().objects.create_user(
+            username='pastor-card-admin',
+            password='Admin-test-password-975!',
+        )
+        content_admin.groups.add(
+            Group.objects.create(name=CONTENT_ADMIN_GROUP),
+        )
+        self.client.force_login(content_admin)
+
+        response = self.client.post(reverse('staff_panel'), {
+            'action': 'pastor-profile',
+            'name': 'Pastor New',
+            'title': 'Reverend',
+            'biography': 'A church leader serving the community.',
+            'display_order': '4',
+        })
+        self.assertRedirects(response, reverse('staff_panel'))
+        profile = PastorProfile.objects.get(name='Pastor New')
+        self.assertEqual(profile.slug, 'pastor-new')
+
+        response = self.client.post(reverse('staff_panel'), {
+            'action': 'pastor-profile',
+            'profile_id': str(profile.pk),
+            'name': 'Reverend New',
+            'title': 'Reverend',
+            'biography': 'Updated ministry description.',
+            'display_order': '1',
+        })
+        self.assertRedirects(response, reverse('staff_panel'))
+        profile.refresh_from_db()
+        self.assertEqual(profile.name, 'Reverend New')
+        self.assertEqual(profile.biography, 'Updated ministry description.')
 
     def test_staff_panel_has_mobile_friendly_photo_and_video_inputs(self):
         content_admin = get_user_model().objects.create_user(
