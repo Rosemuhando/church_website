@@ -520,9 +520,9 @@ html body:has(.site-menu-toggle) .navbar > .site-header-tools {
     display: grid;
     grid-column: 1 / -1;
     grid-row: 2;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: auto auto minmax(0, 1fr);
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     padding-top: 8px;
     border-top: 1px solid #e8ebf3;
 }
@@ -543,11 +543,11 @@ html body:has(.site-menu-toggle) .navbar .page-chrome-title {
     color: #173b8f;
     font-size: 0.86rem;
     font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1.2;
+    white-space: normal;
     grid-column: 2;
     grid-row: 1;
-    justify-self: center;
+    justify-self: start;
 }
 
 html body:has(.site-menu-toggle) .navbar .page-chrome-controls {
@@ -622,8 +622,8 @@ html body:has(.site-menu-toggle) .navbar > .site-header-tools > .site-search {
     }
 
     html body:has(.site-menu-toggle) .navbar > .site-header-tools {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 4px;
+        grid-template-columns: auto minmax(0, auto) minmax(90px, 1fr);
+        gap: 5px;
     }
 
     html body:has(.site-menu-toggle) .navbar .page-chrome-controls {
@@ -635,7 +635,7 @@ html body:has(.site-menu-toggle) .navbar > .site-header-tools > .site-search {
     }
 
     html body:has(.site-menu-toggle) .navbar .page-chrome-title {
-        max-width: 100px;
+        max-width: none;
         font-size: 0.8rem;
     }
 }
