@@ -31,6 +31,12 @@ if (menu && menuToggle) {
         .filter((link) => primaryLabels.includes(link.textContent.trim().toLocaleLowerCase()))
         .sort((first, second) => primaryLabels.indexOf(first.textContent.trim().toLocaleLowerCase())
             - primaryLabels.indexOf(second.textContent.trim().toLocaleLowerCase()));
+    const primaryIcons = {
+        home: 'fa-house',
+        about: 'fa-church',
+        sermons: 'fa-book-bible',
+        contact: 'fa-phone',
+    };
     const moreLinks = links.filter((link) => !primaryLinks.includes(link));
     const primaryNavigation = document.createElement('div');
     const morePages = document.createElement('div');
@@ -43,7 +49,25 @@ if (menu && menuToggle) {
     morePanel.id = 'site-more-pages-menu';
     morePanel.hidden = true;
 
-    primaryLinks.forEach((link) => primaryNavigation.append(link));
+    primaryLinks.forEach((link) => {
+        const labelText = link.textContent.trim();
+        const label = labelText.toLocaleLowerCase();
+        let icon = link.querySelector('i');
+
+        if (!icon) {
+            icon = document.createElement('i');
+        }
+
+        icon.className = `fa-solid ${primaryIcons[label]}`;
+        icon.setAttribute('aria-hidden', 'true');
+        const labelElement = document.createElement('span');
+        labelElement.className = 'site-primary-label';
+        labelElement.textContent = labelText;
+        link.replaceChildren(icon, labelElement);
+        link.setAttribute('aria-label', labelText);
+        link.title = labelText;
+        primaryNavigation.append(link);
+    });
     moreLinks.forEach((link) => morePanel.append(link));
 
     menuToggle.replaceChildren(document.createTextNode('More '));
