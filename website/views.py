@@ -189,7 +189,7 @@ def home(request):
 
 def about(request):
     return render(request, 'About.html', {
-        'pastor_profiles': PastorProfile.objects.all(),
+        'pastor_profiles': PastorProfile.objects.exclude(slug='pastor-michael'),
     })
 
 

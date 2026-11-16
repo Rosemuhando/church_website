@@ -535,6 +535,11 @@ footer p {
     background: var(--mist);
 }
 
+.about-cards {
+    display: grid;
+    gap: 20px;
+}
+
 .card-icon {
     color: var(--plum);
     font-size: 2rem;
@@ -932,6 +937,7 @@ footer p {
 }
 
 .about-page .about-text,
+.about-page .about-cards,
 .about-page .about-card,
 .about-page .pastor-info {
     min-width: 0;
@@ -2027,5 +2033,233 @@ body.site-navigation-collapsed .navbar > .site-menu {
     body:has(.site-menu-toggle) .site-menu > li > a {
         padding-inline: 4px;
         font-size: 0.66rem;
+    }
+}
+
+body:has(.site-menu-toggle) .navbar > .site-menu-toggle {
+    display: flex;
+}
+
+body:has(.site-menu-toggle) .navbar {
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto minmax(170px, 230px);
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 8px 18px;
+    padding: 14px 0;
+}
+
+body:has(.site-menu-toggle) .navbar > .logo {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+body:has(.site-menu-toggle) .navbar > .site-menu {
+    width: auto;
+    height: auto;
+    max-height: none;
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    overflow: visible;
+    position: static;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+}
+
+body:has(.site-menu-toggle) .site-primary-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+}
+
+body:has(.site-menu-toggle) .site-primary-links a,
+body:has(.site-menu-toggle) .site-more-panel a {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 7px 8px;
+    border-radius: 4px;
+    color: #173b8f;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+body:has(.site-menu-toggle) .site-primary-links a:hover,
+body:has(.site-menu-toggle) .site-primary-links a:focus-visible,
+body:has(.site-menu-toggle) .site-more-panel a:hover,
+body:has(.site-menu-toggle) .site-more-panel a:focus-visible {
+    color: #5b2c91;
+    background: linear-gradient(100deg, #edf2ff, #f4eeff);
+}
+
+body:has(.site-menu-toggle) .site-more-pages {
+    position: relative;
+}
+
+body:has(.site-menu-toggle) .site-menu-toggle {
+    min-width: 90px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: static;
+    transform: none;
+    padding: 0 11px;
+    border: 1px solid #d9deed;
+    border-radius: 4px;
+    color: #173b8f;
+    background: #fff;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+body:has(.site-menu-toggle) .site-menu-toggle:hover,
+body:has(.site-menu-toggle) .site-more-pages.is-open .site-menu-toggle {
+    border-color: #5b2c91;
+    color: #5b2c91;
+}
+
+body:has(.site-menu-toggle) .site-more-pages .fa-chevron-down {
+    transition: transform 160ms ease;
+}
+
+body:has(.site-menu-toggle) .site-more-pages.is-open .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+body:has(.site-menu-toggle) .site-more-panel {
+    width: max-content;
+    min-width: 220px;
+    max-width: min(320px, calc(100vw - 32px));
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 1005;
+    padding: 8px;
+    border: 1px solid #e3e6f1;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(28, 35, 76, 0.16);
+}
+
+body:has(.site-menu-toggle) .navbar > .site-search {
+    width: 100%;
+    min-width: 0;
+    grid-column: 3;
+    grid-row: 2;
+    margin: 0;
+}
+
+body:has(.site-menu-toggle) .page-chrome,
+body:has(.site-menu-toggle) .page-chrome-inner {
+    display: contents;
+}
+
+body:has(.site-menu-toggle) .page-chrome-title {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+}
+
+body:has(.site-menu-toggle) .page-chrome-controls {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+}
+
+@media (max-width: 860px) {
+    body:has(.site-menu-toggle) .navbar {
+        grid-template-columns: minmax(0, 1fr) minmax(170px, 230px);
+        gap: 10px 12px;
+    }
+
+    body:has(.site-menu-toggle) .navbar > .site-menu {
+        width: 100%;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: flex-start;
+    }
+
+    body:has(.site-menu-toggle) .site-primary-links {
+        justify-content: flex-start;
+        gap: 4px 8px;
+    }
+
+    body:has(.site-menu-toggle) .navbar > .site-search {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    body:has(.site-menu-toggle) .page-chrome-title {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    body:has(.site-menu-toggle) .page-chrome-controls {
+        grid-column: 2;
+        grid-row: 4;
+    }
+}
+
+@media (max-width: 560px) {
+    body:has(.site-menu-toggle) .navbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    body:has(.site-menu-toggle) .navbar > .logo {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    body:has(.site-menu-toggle) .navbar > .site-menu {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 4px;
+    }
+
+    body:has(.site-menu-toggle) .site-primary-links {
+        gap: 2px;
+    }
+
+    body:has(.site-menu-toggle) .site-primary-links a {
+        min-height: 36px;
+        padding: 5px 6px;
+        font-size: 0.8rem;
+    }
+
+    body:has(.site-menu-toggle) .navbar > .site-search {
+        grid-column: 1 / -1;
+        grid-row: 3;
+    }
+
+    body:has(.site-menu-toggle) .page-chrome-title {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    body:has(.site-menu-toggle) .page-chrome-controls {
+        grid-column: 2;
+        grid-row: 4;
     }
 }

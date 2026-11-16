@@ -42,7 +42,7 @@ The build command runs Django migrations before collecting static files, so the 
 
 Members sign in at `/login/`. From their account page they can request content-admin access. A superadmin signs in through the same page (their login redirects to Django's `/admin/` area), opens **Content admin requests**, and approves or rejects applications. Approved content admins remain ordinary non-staff accounts, sign in at `/login/`, and are sent to `/staff-panel/`. That separate panel can publish announcements and teachings/sermons, upload church photos and videos, and update pastor photos. It does not expose user accounts, admin approvals, or superadmin controls.
 
-The About page's pastor cards are database-backed, including Pastor Michael. Superadmins can edit all profile details in Django's admin area; approved content admins can update profile photos only from their panel.
+The About page's pastor cards are database-backed. Pastor Michael's profile is kept in the database but is not shown on the public About page. Superadmins can edit all profile details in Django's admin area; approved content admins can update profile photos only from their panel.
 
 Cloudinary provides the media upload and storage service; create an account, copy its `CLOUDINARY_URL` into Render's Environment settings, and keep it private. Panel file inputs support photos and videos selected from mobile devices as well as computers. Check Cloudinary's current plan and usage limits before uploading larger video files.
 

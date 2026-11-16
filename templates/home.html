@@ -9,9 +9,9 @@
 
     <title>Full Gospel Churches of Kenya - Njiru</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="{% static 'js/site-search.js' %}?v=6" defer></script>
+    <script src="{% static 'js/site-search.js' %}?v=7" defer></script>
 </head>
 
 <body>
@@ -38,19 +38,19 @@
                 <span data-menu-label>Menu</span>
             </button>
 
-            <ul class="nav-links site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/events/">Events</a></li>
-                <li><a href="/contact/">Contact</a></li>
-                <li><a href="/sermons/">Sermons</a></li>
-                <li><a href="/teachings/">Teachings</a></li>
-                <li><a href="/announcements/">Announcements</a></li>
-                <li><a href="{% url 'gallery' %}">Gallery</a></li>
-                <li><a href="/giving/">Tithes &amp; Offerings</a></li>
-                <li><a href="{% url 'login' %}">Sign in</a></li>
-                <li><a href="{% url 'register' %}">Create account</a></li>
-            </ul>
+            <div class="nav-links site-menu" id="site-page-menu" data-site-menu aria-label="Site navigation">
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/events/">Events</a>
+                <a href="/contact/">Contact</a>
+                <a href="/sermons/">Sermons</a>
+                <a href="/teachings/">Teachings</a>
+                <a href="/announcements/">Announcements</a>
+                <a href="{% url 'gallery' %}">Gallery</a>
+                <a href="/giving/">Tithes &amp; Offerings</a>
+                <a href="{% url 'login' %}">Sign in</a>
+                <a href="{% url 'register' %}">Create account</a>
+            </div>
 
             <form class="site-search" role="search" data-page-search>
                 <input type="search" name="q" placeholder="Search this page" aria-label="Search this page">

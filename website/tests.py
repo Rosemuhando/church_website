@@ -256,8 +256,7 @@ class SiteAuthenticationTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Reverend Anthony')
         self.assertContains(response, 'Pastor Judy')
-        self.assertContains(response, 'Pastor Michael')
-        self.assertContains(response, 'serving the congregation with faith')
+        self.assertNotContains(response, 'Pastor Michael')
 
     def test_registration_creates_regular_user_and_starts_session(self):
         response = self.client.post(reverse('register'), {

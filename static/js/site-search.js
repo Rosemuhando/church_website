@@ -25,24 +25,66 @@ const menu = document.querySelector('[data-site-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 
 if (menu && menuToggle) {
-    const setMenuExpanded = (isExpanded, returnFocus = false) => {
-        document.body.classList.toggle('site-navigation-collapsed', !isExpanded);
+    const primaryLabels = ['home', 'about', 'sermons', 'contact'];
+    const links = Array.from(menu.querySelectorAll('a'));
+    const primaryLinks = links
+        .filter((link) => primaryLabels.includes(link.textContent.trim().toLocaleLowerCase()))
+        .sort((first, second) => primaryLabels.indexOf(first.textContent.trim().toLocaleLowerCase())
+            - primaryLabels.indexOf(second.textContent.trim().toLocaleLowerCase()));
+    const moreLinks = links.filter((link) => !primaryLinks.includes(link));
+    const primaryNavigation = document.createElement('div');
+    const morePages = document.createElement('div');
+    const morePanel = document.createElement('div');
+
+    primaryNavigation.className = 'site-primary-links';
+    primaryNavigation.setAttribute('aria-label', 'Main pages');
+    morePages.className = 'site-more-pages';
+    morePanel.className = 'site-more-panel';
+    morePanel.id = 'site-more-pages-menu';
+    morePanel.hidden = true;
+
+    primaryLinks.forEach((link) => primaryNavigation.append(link));
+    moreLinks.forEach((link) => morePanel.append(link));
+
+    menuToggle.replaceChildren(document.createTextNode('More '));
+    const moreIcon = document.createElement('i');
+    moreIcon.className = 'fa-solid fa-chevron-down';
+    moreIcon.setAttribute('aria-hidden', 'true');
+    menuToggle.append(moreIcon);
+    menuToggle.setAttribute('aria-controls', morePanel.id);
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'More pages');
+
+    morePages.append(menuToggle, morePanel);
+    menu.replaceChildren(primaryNavigation, morePages);
+
+    const setMoreExpanded = (isExpanded, returnFocus = false) => {
         menuToggle.setAttribute('aria-expanded', String(isExpanded));
-        menuToggle.setAttribute('aria-label', isExpanded ? 'Hide site navigation' : 'Show site navigation');
-        menu.setAttribute('aria-hidden', String(!isExpanded));
+        morePanel.hidden = !isExpanded;
+        morePages.classList.toggle('is-open', isExpanded);
 
         if (returnFocus) {
             menuToggle.focus();
         }
     };
 
-    setMenuExpanded(true);
+    setMoreExpanded(false);
     menuToggle.addEventListener('click', () => {
-        setMenuExpanded(menuToggle.getAttribute('aria-expanded') !== 'true');
+        setMoreExpanded(menuToggle.getAttribute('aria-expanded') !== 'true');
     });
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-            setMenuExpanded(false, true);
+            setMoreExpanded(false, true);
+        }
+    });
+    document.addEventListener('click', (event) => {
+        if (!morePages.contains(event.target)) {
+            setMoreExpanded(false);
+        }
+    });
+    morePanel.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+            setMoreExpanded(false);
         }
     });
 }
