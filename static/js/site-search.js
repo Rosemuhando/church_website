@@ -58,6 +58,18 @@ if (menu && menuToggle) {
     morePages.append(menuToggle, morePanel);
     menu.replaceChildren(primaryNavigation, morePages);
 
+    const headerTools = document.createElement('div');
+    const pageTitle = siteNavbar.querySelector('.page-chrome-title');
+    const pageControls = siteNavbar.querySelector('.page-chrome-controls');
+    const searchForm = siteNavbar.querySelector('[data-page-search]');
+
+    headerTools.className = 'site-header-tools';
+    if (pageTitle && pageControls && searchForm) {
+        headerTools.append(pageControls, pageTitle, searchForm);
+        pageChrome?.remove();
+        siteNavbar.append(headerTools);
+    }
+
     const setMoreExpanded = (isExpanded, returnFocus = false) => {
         menuToggle.setAttribute('aria-expanded', String(isExpanded));
         morePanel.hidden = !isExpanded;
